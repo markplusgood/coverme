@@ -18,14 +18,38 @@ PACKAGE MANAGER: Bun
 
 ---
 
+## 📋 CRITICAL: Development Process Requirements
+
+**BEFORE ANY IMPLEMENTATION, YOU MUST:**
+
+1. **Read the canonical documentation in this exact order:**
+  
+  1. devdocs/prd.md
+  2. devdocs/planning/development-roadmap.md
+  3. AGENTS.md
+
+2. **Follow the Stage Implementation Protocol:**
+   - Review current stage requirements from `devdocs/planning/development-roadmap.md`
+   - Create implementation plan with testable success criteria
+   - Implement ONLY current stage features (no premature implementation)
+   - Validate against documented success criteria before claiming completion
+
+3. **Stage Completion Requirements:**
+   - All stage requirements from roadmap must be implemented
+   - Success criteria must be met and testable
+   - Code must follow AGENTS.md principles
+   - Documentation must be updated
+
+---
+
 ## Core Principles
 
-1) **Mobile-first**: design for small screens first, then add breakpoints.  
-2) **Accessibility**: every interactive element must be keyboard and screen-reader friendly (ARIA labels, focus states).  
-3) **Type safety**: strict TypeScript; no `any`. Model all payloads (job, resume, letter).  
-4) **Server-side validation**: validate/sanitize job text, resumes, and preferences on the server.  
-5) **Privacy & PII**: never log raw resumes or job descriptions; strip PII from telemetry.  
-6) **ATS-friendly output**: clean text structure, single column, no decorative images in exports.  
+1) **Mobile-first**: design for small screens first, then add breakpoints.
+2) **Accessibility**: every interactive element must be keyboard and screen-reader friendly (ARIA labels, focus states).
+3) **Type safety**: strict TypeScript; no `any`. Model all payloads (job, resume, letter).
+4) **Server-side validation**: validate/sanitize job text, resumes, and preferences on the server.
+5) **Privacy & PII**: never log raw resumes or job descriptions; strip PII from telemetry.
+6) **ATS-friendly output**: clean text structure, single column, no decorative images in exports.
 7) **Conversion mindset**: propose A/B tests when UX changes could affect signup, generation, or upgrade funnels.
 8) **Documentation First**: Review product requirements in `devdocs/prd.md` and reference feature-specific documents in `devdocs` before planning and implementing any new feature.
 
@@ -384,7 +408,7 @@ export const ERROR_MESSAGES = {
 
 ### 1) Marketing Site
 - Goal: drive signups; optimize LCP and SEO (meta tags, OG/Twitter).
-- Clear CTA (“Generate my cover letter”), social proof, and pricing clarity.
+- Clear CTA ("Generate my cover letter"), social proof, and pricing clarity.
 - Track `page_view`, `cta_click`, `signup_start`.
 
 ### 2) Onboarding
@@ -532,6 +556,7 @@ export const POST: RequestHandler = async ({ request, locals }) => {
 ---
 
 ## Types
+
 ```typescript
 export interface CoverLetterDraft {
   id: string;
@@ -571,16 +596,3 @@ export interface UserProfile {
 - Strip PII from logs and telemetry; log ids/hashes only.
 - Respect Do-Not-Track where feasible.
 - Require explicit user action for exports/sharing; never auto-email.
-
----
-
-## Remember
-
-1) Think mobile-first and accessible.  
-2) Validate and sanitize everything server-side.  
-3) Keep outputs ATS-friendly and concise.  
-4) Protect PII—no raw resumes or job text in logs.  
-5) Propose A/B tests for conversion-critical changes.  
-6) Measure and cache to control AI cost.  
-7) Ask for clarification when requirements are ambiguous.  
-8) Document complex logic for future maintainers.
