@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" fill="none">
+  <rect width="800" height="400" fill="#f8fafc" rx="12"/>
+
+  <!-- Document background -->
+  <rect x="100" y="50" width="600" height="300" fill="white" rx="8" stroke="#e2e8f0" stroke-width="2"/>
+
+  <!-- Header with title -->
+  <rect x="120" y="70" width="560" height="40" fill="#f1f5f9" rx="4"/>
+  <text x="400" y="95" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#475569">COVER LETTER</text>
+
+  <!-- AI Robot illustration -->
+  <circle cx="250" cy="180" r="40" fill="#8b5cf6" stroke="#7c3aed" stroke-width="2"/>
+  <rect x="230" y="220" width="40" height="60" fill="#8b5cf6" rx="4"/>
+  <rect x="220" y="210" width="60" height="20" fill="#a78bfa" rx="2"/>
+  <circle cx="240" cy="170" r="3" fill="#ffffff"/>
+  <circle cx="260" cy="170" r="3" fill="#ffffff"/>
+  <rect x="245" y="185" width="10" height="4" fill="#ffffff"/>
+
+  <!-- Document content lines -->
+  <line x1="130" y1="130" x2="670" y2="130" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="130" y1="150" x2="670" y2="150" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="130" y1="170" x2="670" y2="170" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="130" y1="190" x2="670" y2="190" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="130" y1="210" x2="670" y2="210" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="130" y1="230" x2="670" y2="230" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="130" y1="250" x2="670" y2="250" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="130" y1="270" x2="670" y2="270" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="130" y1="290" x2="670" y2="290" stroke="#cbd5e1" stroke-width="1"/>
+  <line x1="130" y1="310" x2="670" y2="310" stroke="#cbd5e1" stroke-width="1"/>
+
+  <!-- AI Generation indicator -->
+  <rect x="500" y="160" width="120" height="30" fill="#dbeafe" rx="15"/>
+  <text x="560" y="180" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1e40af">AI GENERATING</text>
+
+  <!-- Decorative elements -->
+  <circle cx="150" cy="100" r="8" fill="#fbbf24" opacity="0.7"/>
+  <circle cx="650" cy="80" r="6" fill="#10b981" opacity="0.7"/>
+  <circle cx="700" cy="350" r="10" fill="#f97316" opacity="0.7"/>
+
+  <!-- Sparkle effects -->
+  <path d="M180 120 L185 115 L190 120 L185 125 Z" fill="#fbbf24"/>
+  <path d="M620 90 L625 85 L630 90 L625 95 Z" fill="#3b82f6"/>
+</svg>
