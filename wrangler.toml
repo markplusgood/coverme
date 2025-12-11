@@ -1,16 +1,16 @@
-# Cloudflare Pages Configuration for cover.me
 name = "coverme"
-main = "./.svelte-kit/cloudflare/worker.js"
 compatibility_date = "2025-12-11"
 
-# Build configuration for SvelteKit with Cloudflare Pages
 [build]
 command = "bun run build"
-cwd = "."
-pages_build_output_dir = ".svelte-kit/cloudflare"
+cwd = "./"
+compatibility_date = "2025-12-11"
 
-# Environment variables (for local development only)
-# Production environment variables should be configured in Cloudflare Pages dashboard
-[vars]
-NODE_VERSION = "22"
-APP_ENV = "development"
+[build.upload]
+format = "service-worker"
+
+[env.production]
+vars = { APP_ENV = "production" }
+
+[env.development]
+vars = { APP_ENV = "development" }
