@@ -1,6 +1,6 @@
 # Cloudflare Pages Configuration for cover.me
 name = "coverme"
-main = "./.svelte-kit/cloudflare/_worker.js"
+main = "./.svelte-kit/cloudflare/worker.js"
 compatibility_date = "2025-12-11"
 
 # Build configuration for SvelteKit with Cloudflare Pages
