@@ -1,7 +1,8 @@
 name = "coverme"
-main = "./.svelte-kit/cloudflare/worker.js"
+main = "./.svelte-kit/output/server/index.js"
 compatibility_date = "2025-12-11"
 workers_dev = true
+nodejs_compat = true
 
 # Build configuration for SvelteKit
 [build]
@@ -12,9 +13,10 @@ watch_dir = "src"
 # Environment variables
 [vars]
 NODE_VERSION = "22"
+OPENROUTER_API_KEY = "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"
 
 # For production deployment
 [env.production]
 name = "coverme-production"
 routes = ["https://cover.me/*"]
-vars = { NODE_VERSION = "22" }
+vars = { NODE_VERSION = "22", OPENROUTER_API_KEY = "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" }

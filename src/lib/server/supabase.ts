@@ -1,11 +1,8 @@
 import { createClient } from '@supabase/supabase-js';
 import type { SupabaseClient } from '@supabase/supabase-js';
 
-// Load environment variables from .env file for server-side use
-import { config } from 'dotenv';
-config();
-
 // For Stage 1 MVP, make Supabase client optional since we don't need authentication yet
+// Environment variables are handled by Cloudflare Workers, no need for dotenv
 let supabaseClient: SupabaseClient | null = null;
 let supabaseAdminClient: SupabaseClient | null = null;
 
