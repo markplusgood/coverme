@@ -46,7 +46,7 @@ Configure the following build settings:
 # Build settings
 Production branch: main
 Build command: bun run build
-Build output directory: build
+Build output directory: .svelte-kit/cloudflare
 Root directory: (leave empty)
 
 # Environment variables (see Environment Variables section below)
@@ -105,29 +105,26 @@ export default config;
 **File**: `wrangler.toml`
 
 ```toml
+# Cloudflare Pages Configuration for cover.me
 name = "coverme"
-compatibility_date = "2024-01-01"
-compatibility_flags = ["nodejs_compat"]
+main = "./.svelte-kit/cloudflare/_worker.js"
+compatibility_date = "2025-12-11"
 
+# Build configuration for SvelteKit with Cloudflare Pages
 [build]
 command = "bun run build"
+cwd = "."
+watch_dir = "src"
 
-[build.upload]
-format = "modules"
-
-[[build.upload.rules]]
-type = "ESModule"
-globs = ["**/*.js"]
-
-# Environment variables (defined in Cloudflare dashboard)
+# Environment variables (for local development only)
+# Production environment variables should be configured in Cloudflare Pages dashboard
 [vars]
-PUBLIC_SITE_URL = "https://cover.me"
+NODE_VERSION = "22"
+APP_ENV = "development"
 
-# KV namespaces (if using Cloudflare KV)
-[[kv_namespaces]]
-binding = "CACHE"
-id = "your_kv_namespace_id"
-preview_id = "your_preview_kv_id"
+# Cloudflare Pages specific configuration
+[pages]
+build_output_dir = ".svelte-kit/cloudflare"
 ```
 
 ### Package.json Scripts

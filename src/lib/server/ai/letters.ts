@@ -3,6 +3,13 @@
 // For local development, we rely on the existing dotenv setup in hooks.server.ts
 
 const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const APP_ENV = process.env.APP_ENV || 'development';
+
+// Enhanced environment validation for production
+if (APP_ENV === 'production' && (!OPENROUTER_API_KEY || OPENROUTER_API_KEY === 'your_openrouter_api_key_here')) {
+    console.error('❌ Production error: OpenRouter API key not configured');
+    throw new Error('OpenRouter API key is required for production');
+}
 
 interface CoverLetterInput {
     resumeText: string;
