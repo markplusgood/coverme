@@ -1,0 +1,46 @@
+2025-12-11T08:32:23.396398Z	Cloning repository...
+2025-12-11T08:32:23.980128Z	From https://github.com/markplusgood/coverme
+2025-12-11T08:32:23.980643Z	 * branch            b688d1e261857bd929dc7fc7be9634475c42fa80 -> FETCH_HEAD
+2025-12-11T08:32:23.980826Z	
+2025-12-11T08:32:24.013574Z	HEAD is now at b688d1e typo wrangler
+2025-12-11T08:32:24.014003Z	
+2025-12-11T08:32:24.080862Z	
+2025-12-11T08:32:24.081308Z	Using v2 root directory strategy
+2025-12-11T08:32:24.101293Z	Success: Finished cloning repository files
+2025-12-11T08:32:25.770646Z	Checking for configuration in a Wrangler configuration file (BETA)
+2025-12-11T08:32:25.771584Z	
+2025-12-11T08:32:25.772957Z	Found wrangler.toml file. Reading build configuration...
+2025-12-11T08:32:26.866132Z	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
+2025-12-11T08:32:26.932963Z	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
+2025-12-11T08:32:26.933473Z	Installing project dependencies: npm install --progress=false
+2025-12-11T08:32:28.949773Z	npm error code ERESOLVE
+2025-12-11T08:32:28.949998Z	npm error ERESOLVE unable to resolve dependency tree
+2025-12-11T08:32:28.950552Z	npm error
+2025-12-11T08:32:28.950927Z	npm error While resolving: coverme@0.0.1
+2025-12-11T08:32:28.951027Z	npm error Found: svelte@4.2.20
+2025-12-11T08:32:28.95109Z	npm error node_modules/svelte
+2025-12-11T08:32:28.951264Z	npm error   dev svelte@"^4.0.0" from the root project
+2025-12-11T08:32:28.951414Z	npm error
+2025-12-11T08:32:28.951487Z	npm error Could not resolve dependency:
+2025-12-11T08:32:28.951549Z	npm error peer svelte@"^3.54.0" from @sveltejs/kit@1.0.0-next.589
+2025-12-11T08:32:28.951646Z	npm error node_modules/@sveltejs/kit
+2025-12-11T08:32:28.951742Z	npm error   dev @sveltejs/kit@"next" from the root project
+2025-12-11T08:32:28.952099Z	npm error   peer @sveltejs/kit@"^1.0.0-next.587" from @sveltejs/adapter-auto@1.0.0-next.91
+2025-12-11T08:32:28.952232Z	npm error   node_modules/@sveltejs/adapter-auto
+2025-12-11T08:32:28.952358Z	npm error     dev @sveltejs/adapter-auto@"next" from the root project
+2025-12-11T08:32:28.952431Z	npm error
+2025-12-11T08:32:28.952496Z	npm error Fix the upstream dependency conflict, or retry
+2025-12-11T08:32:28.952551Z	npm error this command with --force or --legacy-peer-deps
+2025-12-11T08:32:28.952614Z	npm error to accept an incorrect (and potentially broken) dependency resolution.
+2025-12-11T08:32:28.952674Z	npm error
+2025-12-11T08:32:28.952785Z	npm error
+2025-12-11T08:32:28.952863Z	npm error For a full report see:
+2025-12-11T08:32:28.952927Z	npm error /opt/buildhome/.npm/_logs/2025-12-11T08_32_27_288Z-eresolve-report.txt
+2025-12-11T08:32:28.953Z	npm error A complete log of this run can be found in: /opt/buildhome/.npm/_logs/2025-12-11T08_32_27_288Z-debug-0.log
+2025-12-11T08:32:28.973169Z	Error: Exit with error code: 1
+2025-12-11T08:32:28.973436Z	    at ChildProcess.<anonymous> (/snapshot/dist/run-build.js)
+2025-12-11T08:32:28.973565Z	    at Object.onceWrapper (node:events:652:26)
+2025-12-11T08:32:28.973665Z	    at ChildProcess.emit (node:events:537:28)
+2025-12-11T08:32:28.973813Z	    at ChildProcess._handle.onexit (node:internal/child_process:291:12)
+2025-12-11T08:32:28.983107Z	Failed: build command exited with code: 1
+2025-12-11T08:32:30.233457Z	Failed: error occurred while running build command

@@ -7,14 +7,10 @@ compatibility_date = "2025-12-11"
 [build]
 command = "bun run build"
 cwd = "."
-watch_dir = "src"
+pages_build_output_dir = ".svelte-kit/cloudflare"
 
 # Environment variables (for local development only)
 # Production environment variables should be configured in Cloudflare Pages dashboard
 [vars]
 NODE_VERSION = "22"
 APP_ENV = "development"
-
-# Cloudflare Pages specific configuration
-[pages]
-build_output_dir = ".svelte-kit/cloudflare"
