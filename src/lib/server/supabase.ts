@@ -7,21 +7,31 @@ let supabaseClient: SupabaseClient | null = null;
 let supabaseAdminClient: SupabaseClient | null = null;
 
 try {
+    // Environment variable access for Cloudflare Pages
     const supabaseUrl = process.env.PUBLIC_SUPABASE_URL || process.env.VITE_PUBLIC_SUPABASE_URL;
     const supabaseAnonKey = process.env.PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_PUBLIC_SUPABASE_ANON_KEY;
+    const serviceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_SERVICE_ROLE_KEY;
 
-    if (supabaseUrl && supabaseAnonKey) {
+    // Debug logging for environment variables
+    console.log('🔍 Environment Debug:', {
+        PUBLIC_SUPABASE_URL: supabaseUrl ? `${supabaseUrl.substring(0, 30)}...` : 'undefined',
+        PUBLIC_SUPABASE_ANON_KEY: supabaseAnonKey ? `${supabaseAnonKey.substring(0, 30)}...` : 'undefined',
+        SUPABASE_SERVICE_ROLE_KEY: serviceRoleKey ? `${serviceRoleKey.substring(0, 30)}...` : 'undefined',
+        NODE_ENV: process.env.NODE_ENV,
+        VITE_PUBLIC_SUPABASE_URL: process.env.VITE_PUBLIC_SUPABASE_URL ? 'set' : 'undefined',
+        VITE_PUBLIC_SUPABASE_ANON_KEY: process.env.VITE_PUBLIC_SUPABASE_ANON_KEY ? 'set' : 'undefined',
+        VITE_SUPABASE_SERVICE_ROLE_KEY: process.env.VITE_SUPABASE_SERVICE_ROLE_KEY ? 'set' : 'undefined'
+    });
+
+    if (supabaseUrl && supabaseAnonKey && serviceRoleKey) {
         supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
-        supabaseAdminClient = createClient(
-            supabaseUrl,
-            process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_SERVICE_ROLE_KEY!
-        );
-        console.log('Supabase client initialized successfully');
+        supabaseAdminClient = createClient(supabaseUrl, serviceRoleKey);
+        console.log('✅ Supabase client initialized successfully');
     } else {
-        console.log('Supabase environment variables not configured - running in standalone mode for Stage 1 MVP');
+        console.log('❌ Supabase environment variables not configured - running in standalone mode for Stage 1 MVP');
     }
 } catch (error: unknown) {
-    console.warn('Failed to initialize Supabase client:', (error as Error).message);
+    console.warn('⚠️ Failed to initialize Supabase client:', (error as Error).message);
     // For Stage 1 MVP, this is acceptable since we don't need authentication yet
 }
 

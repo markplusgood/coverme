@@ -43,10 +43,16 @@
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
       <a
-        href="/auth/signup"
+        href="/generator"
         class="bg-primary-600 text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-primary-700 transition-colors shadow-lg"
       >
-        Get Started Free
+        Try Now - Generate Cover Letter
+      </a>
+      <a
+        href="/auth/signup"
+        class="bg-white text-primary-600 px-8 py-3 rounded-lg text-lg font-semibold border-2 border-primary-600 hover:bg-primary-50 transition-colors"
+      >
+        Sign Up Free
       </a>
       <a
         href="#features"
@@ -62,7 +68,7 @@
         src="/cover-letter-illustration.svg"
         alt="AI generating a cover letter"
         class="mx-auto max-w-2xl w-full"
-        on:error={(e) => (e.currentTarget.src = "/favicon.png")}
+        on:error={() => {}}
       />
     </div>
   </div>
@@ -236,16 +242,16 @@
 
     <div class="flex flex-col sm:flex-row gap-4 justify-center">
       <a
-        href="/auth/signup"
+        href="/generator"
         class="bg-white text-primary-600 px-8 py-3 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-colors"
       >
-        Sign Up Free
+        Try Now - Generate Cover Letter
       </a>
       <a
-        href="/auth/login"
+        href="/auth/signup"
         class="bg-primary-700 text-white px-8 py-3 rounded-lg text-lg font-semibold border-2 border-white hover:bg-primary-800 transition-colors"
       >
-        Log In
+        Sign Up Free
       </a>
     </div>
   </div>

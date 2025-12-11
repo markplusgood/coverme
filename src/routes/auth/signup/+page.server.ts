@@ -32,9 +32,23 @@ export const actions: Actions = {
         }
 
         try {
+            if (!supabase) {
+                // Demo mode - simulate successful signup
+                console.log('🔓 Demo mode: Simulating successful signup for', email);
+                return {
+                    success: true,
+                    demoMode: true,
+                    message: 'Demo mode: Signup successful! (Authentication service not configured)',
+                    email,
+                };
+            }
+
             const { data, error } = await supabase.auth.signUp({
                 email,
                 password,
+                options: {
+                    emailRedirectTo: `${request.url.replace('/signup', '/confirm')}`,
+                },
             });
 
             if (error) {
@@ -44,9 +58,25 @@ export const actions: Actions = {
                 });
             }
 
-            // Redirect to login after successful signup
+            // Check if user needs email confirmation
+            if (data.user && !data.session) {
+                return {
+                    success: true,
+                    emailConfirmationRequired: true,
+                    message: 'Please check your email and click the confirmation link to complete your registration.',
+                    email,
+                };
+            }
+
+            // If user is immediately logged in (email confirmation disabled)
+            if (data.session) {
+                throw redirect(303, '/app');
+            }
+
+            // Fallback - redirect to login
             throw redirect(303, '/auth/login');
         } catch (error) {
+            console.error('Signup error:', error);
             return fail(500, {
                 error: 'An unexpected error occurred',
                 email,

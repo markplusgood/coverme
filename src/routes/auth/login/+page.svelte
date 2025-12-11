@@ -1,9 +1,11 @@
 <script lang="ts">
-    export let form;
+    export let form: any;
     let error: string | null = null;
+    let emailConfirmationRequired = false;
 
     $: if (form?.error) {
         error = form.error;
+        emailConfirmationRequired = form.emailConfirmationRequired || false;
     }
 </script>
 
@@ -13,6 +15,19 @@
         <div class="p-3 mb-4 bg-red-100 text-red-700 rounded-lg">
             {error}
         </div>
+
+        {#if emailConfirmationRequired}
+            <div class="p-3 mb-4 bg-blue-50 border border-blue-200 rounded-lg">
+                <p class="text-sm text-blue-800">
+                    Need a new confirmation email?
+                    <a
+                        href="/auth/signup"
+                        class="font-medium text-blue-600 hover:text-blue-500 underline"
+                        >Sign up again</a
+                    > or check your spam folder.
+                </p>
+            </div>
+        {/if}
     {/if}
 
     <form method="POST" class="space-y-4">
