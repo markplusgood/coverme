@@ -6,7 +6,17 @@ const config = {
     preprocess: vitePreprocess(),
 
     kit: {
-        adapter: adapter(),
+        adapter: adapter({
+            routes: {
+                include: ['/*'],
+                exclude: ['<all>']
+            },
+            platformProxy: {
+                configPath: 'wrangler.toml',
+                environment: undefined,
+                experimentalJsonConfig: undefined
+            }
+        }),
         alias: {
             $lib: 'src/lib'
         }

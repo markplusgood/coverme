@@ -2,7 +2,7 @@
 // In Cloudflare Pages, environment variables are automatically available via process.env
 // For local development, we rely on the existing dotenv setup in hooks.server.ts
 
-const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY;
+const OPENROUTER_API_KEY = process.env.OPENROUTER_API_KEY || process.env.OPENAI_API_KEY;
 const APP_ENV = process.env.APP_ENV || 'development';
 
 // Enhanced environment validation for production
