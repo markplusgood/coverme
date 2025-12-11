@@ -1,19 +1,13 @@
 name = "coverme"
-type = "javascript"
-workers_dev = true
+main = "./.svelte-kit/cloudflare/worker.js"
 compatibility_date = "2025-12-11"
+workers_dev = true
 
-[site]
-bucket = "./.svelte-kit/cloudflare"
-entry-point = "workers-site"
-
-# Cloudflare Pages configuration
+# Build configuration for SvelteKit
 [build]
 command = "bun run build"
 cwd = "."
-
-[build.upload]
-format = "service-worker"
+watch_dir = "src"
 
 # Environment variables
 [vars]
