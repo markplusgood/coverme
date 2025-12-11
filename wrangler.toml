@@ -1,9 +1,0 @@
-name = "coverme"
-compatibility_date = "2025-12-11"
-compatibility_flags = [ "nodejs_compat" ]
-pages_build_output_dir = ".svelte-kit/cloudflare"
-[env.production]
-vars = { APP_ENV = "production" }
-
-[env.preview]
-vars = { APP_ENV = "preview" }
