@@ -17,15 +17,7 @@
         "sourceMap": true,
         "strict": true,
         "moduleResolution": "node",
-        "baseUrl": ".",
-        "paths": {
-            "$lib/*": [
-                "src/lib/*"
-            ],
-            "$lib": [
-                "src/lib"
-            ]
-        }
+        "verbatimModuleSyntax": true
     },
     "include": [
         "src/**/*.d.ts",

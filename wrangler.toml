@@ -1,14 +1,10 @@
 name = "coverme"
 compatibility_date = "2025-12-11"
+pages_build_output_dir = "build"
 
 [build]
 command = "bun run build"
 cwd = "./"
-compatibility_date = "2025-12-11"
-watch_paths = ["src/**/*.svelte", "src/**/*.ts", "src/**/*.js"]
-
-[build.upload]
-format = "service-worker"
 
 [env.production]
 vars = { APP_ENV = "production" }
