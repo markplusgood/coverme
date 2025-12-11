@@ -1,0 +1,26 @@
+name = "coverme"
+type = "javascript"
+workers_dev = true
+compatibility_date = "2025-12-11"
+
+[site]
+bucket = "./.svelte-kit/cloudflare"
+entry-point = "workers-site"
+
+# Cloudflare Pages configuration
+[build]
+command = "bun run build"
+cwd = "."
+
+[build.upload]
+format = "service-worker"
+
+# Environment variables
+[vars]
+NODE_VERSION = "22"
+
+# For production deployment
+[env.production]
+name = "coverme-production"
+routes = ["https://cover.me/*"]
+vars = { NODE_VERSION = "22" }

@@ -174,6 +174,3 @@ All errors follow a standard JSON format (see AGENTS.md):
 - **TODO-TECH**: Define resume file size limits and compression strategy if files exceed limit.
 
 ---
-
-## ✅ COMPLETED
-All endpoints, schemas, and references have been successfully refactored from "lesson/progress/assignment/course" to job/resume/letter terms. The documentation now fully reflects the career/cover letter context.

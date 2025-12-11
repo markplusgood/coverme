@@ -235,10 +235,6 @@ trackError('Payment processing failed', {
   extra: { orderId: '12345', amount: 5000 }
 });
 
-trackError(new Error('Course progress sync failed'), {
-  severity: 'warning',
-  tags: { component: 'cover-letter-generation' }
-});
 ```
 
 ### Cloudflare Insights
@@ -423,15 +419,7 @@ export const ERROR_MESSAGES = {
   NETWORK_ERROR: 'Проблема с подключением к интернету. Проверьте соединение и попробуйте снова.',
   NETWORK_TIMEOUT: 'Запрос занял слишком много времени. Пожалуйста, попробуйте позже.',
   
-  // Course errors
-  COURSE_NOT_FOUND: 'Урок не найден. Вернитесь к списку курсов.',
-  COURSE_ACCESS_DENIED: 'У вас нет доступа к этому курсу. Приобретите курс для продолжения.',
-  COURSE_SAVE_FAILED: 'Не удалось сохранить прогресс. Пожалуйста, попробуйте снова.',
-  
-  // Assignment errors
-  ASSIGNMENT_SUBMIT_FAILED: 'Не удалось отправить задание. Проверьте подключение и попробуйте снова.',
-  ASSIGNMENT_INVALID: 'Пожалуйста, заполните все обязательные поля.',
-  
+
   // Payment errors
   PAYMENT_FAILED: 'Оплата не прошла. Проверьте данные карты или попробуйте другой способ оплаты.',
   PAYMENT_DECLINED: 'Платёж отклонён. Обратитесь в ваш банк.',
@@ -515,9 +503,9 @@ export function getUserFriendlyError(error: any): string {
       case 401:
         return ERROR_MESSAGES.AUTH_SESSION_EXPIRED;
       case 403:
-        return ERROR_MESSAGES.COURSE_ACCESS_DENIED;
+        return ERROR_MESSAGES.ACCESS_DENIED;
       case 404:
-        return ERROR_MESSAGES.COURSE_NOT_FOUND;
+        return ERROR_MESSAGES.NOT_FOUND;
       case 413:
         return ERROR_MESSAGES.FILE_TOO_LARGE;
       case 500:
@@ -1488,7 +1476,7 @@ See [deployment.md](./deployment.md#L490-L495) for CI/CD integration.
 
 ## Summary
 
-This document provides comprehensive error handling and monitoring guidelines for the IndigoCosmo platform:
+This document provides comprehensive error handling and monitoring guidelines for the cover.me platform :
 
 1. **Error Logging Strategy**: Sentry integration for frontend/backend errors, Cloudflare insights for performance
 2. **User-Facing Error Messages**: Russian-language, user-friendly error messages with clear actions

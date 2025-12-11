@@ -1533,24 +1533,6 @@ input::placeholder {
   - [ ] Dropdowns keyboard navigable
   - [ ] Tooltips accessible on keyboard focus
 
-### 6.4 Course Content Page Checklist
-
-- [ ] **Lesson Content**
-  - [ ] Video player keyboard accessible
-  - [ ] Video has captions and transcript
-  - [ ] Lesson text has good contrast
-  - [ ] Headings structure content
-  
-- [ ] **Navigation**
-  - [ ] Previous/Next example buttons clear
-  - [ ] Generation progress announced
-  - [ ] Table of contents accessible
-  
-- [ ] **Interactive Elements**
-  - [ ] Quizzes fully keyboard accessible
-  - [ ] Form inputs labeled
-  - [ ] Feedback announced to screen readers
-
 ---
 
 ## 7. Automated Testing Integration

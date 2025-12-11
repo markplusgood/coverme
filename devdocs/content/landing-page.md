@@ -1,7 +1,7 @@
 # Landing Page Strategy (cover.me)
 
 ## Core Goal
-Drive signups, cover letter generations, and resume uploads by job-seekers. Every section and call to action should remove friction and increase conversion to letter generation/export. No course/education content remains.
+Drive signups, cover letter generations, and resume uploads by job-seekers. Every section and call to action should remove friction and increase conversion to letter generation/export.
 
 ---
 ## Layout Structure

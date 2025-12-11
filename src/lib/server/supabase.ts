@@ -1,19 +1,38 @@
 import { createClient } from '@supabase/supabase-js';
+import type { SupabaseClient } from '@supabase/supabase-js';
 
 // Load environment variables from .env file for server-side use
 import { config } from 'dotenv';
 config();
 
-const supabaseUrl = process.env.PUBLIC_SUPABASE_URL || process.env.VITE_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_PUBLIC_SUPABASE_ANON_KEY;
+// For Stage 1 MVP, make Supabase client optional since we don't need authentication yet
+let supabaseClient: SupabaseClient | null = null;
+let supabaseAdminClient: SupabaseClient | null = null;
 
-if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error('Missing Supabase environment variables. Check your .env file and ensure it has PUBLIC_SUPABASE_URL and PUBLIC_SUPABASE_ANON_KEY');
+try {
+    const supabaseUrl = process.env.PUBLIC_SUPABASE_URL || process.env.VITE_PUBLIC_SUPABASE_URL;
+    const supabaseAnonKey = process.env.PUBLIC_SUPABASE_ANON_KEY || process.env.VITE_PUBLIC_SUPABASE_ANON_KEY;
+
+    if (supabaseUrl && supabaseAnonKey) {
+        supabaseClient = createClient(supabaseUrl, supabaseAnonKey);
+        supabaseAdminClient = createClient(
+            supabaseUrl,
+            process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_SERVICE_ROLE_KEY!
+        );
+        console.log('Supabase client initialized successfully');
+    } else {
+        console.log('Supabase environment variables not configured - running in standalone mode for Stage 1 MVP');
+    }
+} catch (error: unknown) {
+    console.warn('Failed to initialize Supabase client:', (error as Error).message);
+    // For Stage 1 MVP, this is acceptable since we don't need authentication yet
 }
 
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
+// Export clients (may be null if not configured)
+export const supabase = supabaseClient;
+export const supabaseAdmin = supabaseAdminClient;
 
-export const supabaseAdmin = createClient(
-    supabaseUrl,
-    process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.VITE_SUPABASE_SERVICE_ROLE_KEY!
-);
+// Helper to check if Supabase is available
+export function isSupabaseAvailable(): boolean {
+    return supabaseClient !== null;
+}
