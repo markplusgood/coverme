@@ -2,7 +2,7 @@
 
 ## Overview
 
-This document provides comprehensive error handling and monitoring guidelines for the indigocosmo.club spiritual course platform. It consolidates error management strategies, monitoring setup, and best practices to ensure robust error tracking, user-friendly error experiences, and proactive issue resolution.
+This document provides comprehensive error handling and monitoring guidelines for the cover.me AI cover letter writer platform. It consolidates error management strategies, monitoring setup, and best practices to ensure robust error tracking, user-friendly error experiences, and proactive issue resolution.
 
 **Platform Stack**:
 - **Frontend**: SvelteKit + TypeScript
@@ -237,7 +237,7 @@ trackError('Payment processing failed', {
 
 trackError(new Error('Course progress sync failed'), {
   severity: 'warning',
-  tags: { component: 'course-progress' }
+  tags: { component: 'cover-letter-generation' }
 });
 ```
 
@@ -321,8 +321,8 @@ logger.info('User logged in', {
 });
 
 logger.error('Database query failed', {
-  component: 'course-progress',
-  metadata: { query: 'update_progress', lessonSlug: 'intro' }
+  component: 'cover-letter-generation',
+  metadata: { query: 'generate_letter', jobId: 'job-123' }
 });
 ```
 
@@ -333,7 +333,7 @@ logger.error('Database query failed', {
 | Severity | Description | Examples | Action |
 |----------|-------------|----------|--------|
 | **Fatal** | Critical errors breaking core functionality | Payment processing failure, auth system down, database connection lost | Immediate alert, page to on-call |
-| **Error** | Significant issues affecting user experience | Failed API request, course content not loading | Alert within 30 min, investigate |
+| **Error** | Significant issues affecting user experience | Failed API request, cover letter generation failure | Alert within 30 min, investigate |
 | **Warning** | Recoverable issues | Network timeout (retried successfully), deprecated API usage | Log for analysis, no alert |
 | **Info** | Expected errors or informational messages | User entered invalid email, 404 for blog post | Log only, no action |
 
@@ -388,7 +388,7 @@ export function classifyError(error: Error): ErrorSeverity {
 
 ### Language Requirement
 
-**All user-facing error messages MUST be in Russian** per project requirements (see [AGENTS.md](file:///home/mmxlvlxix/code/indigocosmo/AGENTS.md) and [editing-manual-ru.md](file:///home/mmxlvlxix/code/indigocosmo/devdocs/editing-manual-ru.md)).
+**All user-facing error messages MUST be in Russian** per project requirements (see [AGENTS.md](../../AGENTS.md) and [content/editing-guide-ru.md](../content/editing-guide-ru.md)).
 
 ### Error Message Standards
 
@@ -770,9 +770,9 @@ export async function retryWithBackoff<T>(
 }
 
 // Usage example
-const courseProgress = await retryWithBackoff(
+const letterGeneration = await retryWithBackoff(
   () => supabase
-    .from('course_progress')
+    .from('letters')
     .select('*')
     .eq('user_id', userId),
   { maxAttempts: 3, initialDelay: 500 }
@@ -814,7 +814,7 @@ export function enableFeature(feature: keyof FeatureAvailability) {
 }
 
 // Usage in component
-// src/routes/portal/course/lessons/[slug]/+page.svelte
+// src/routes/app/letters/[id]/+page.svelte
 import { featureAvailability } from '$lib/utils/feature-flags';
 
 {#if $featureAvailability.videoPlayer}
@@ -899,18 +899,18 @@ export async function optimisticUpdate<T>(
 }
 
 // Usage example
-// Mark lesson as complete
-async function toggleLessonComplete(lessonSlug: string, currentState: boolean) {
+// Mark letter as generated
+async function toggleLetterGenerated(letterId: string, currentState: boolean) {
   const newState = !currentState;
   
   await optimisticUpdate(
     // Update function
     () => supabase
-      .from('course_progress')
+      .from('letters')
       .upsert({
         user_id: userId,
-        lesson_slug: lessonSlug,
-        completed: newState
+        letter_id: letterId,
+        generated: newState
       }),
     
     // Optimistic update
@@ -962,8 +962,8 @@ export function clearState(key: string): void {
   sessionStorage.removeItem(key);
 }
 
-// Usage in assignment form
-// src/routes/portal/course/assignments/[slug]/+page.svelte
+// Usage in letter generation form
+// src/routes/app/generate/+page.svelte
 import { saveState, loadState, clearState } from '$lib/utils/state-recovery';
 
 let assignmentContent = '';
@@ -1043,7 +1043,7 @@ Filters:
   - Ignore errors from bots
 Actions:
   - Send notification to #alerts Slack channel
-  - Email: team@indigocosmo.club
+  - Email: team@cover.me
 ```
 
 ### Cloudflare Monitoring
@@ -1070,7 +1070,7 @@ Cloudflare Dashboard → Notifications → Add
 
 Notification Type: Advanced DDoS Attack Alerter
 Notification Name: Security Alert
-Delivery Method: Email (team@indigocosmo.club)
+Delivery Method: Email (team@cover.me)
 ```
 
 ### Health Check Endpoints
@@ -1121,7 +1121,7 @@ export const GET: RequestHandler = async () => {
 
 **Monitor with external service:**
 - Use [UptimeRobot](https://uptimerobot.com) (free tier: 50 monitors)
-- Monitor endpoint: `https://indigocosmo.club/api/health`
+- Monitor endpoint: `https://cover.me/api/health`
 - Check interval: Every 5 minutes
 - Alert methods: Email, Slack
 
@@ -1342,7 +1342,7 @@ const progress = await monitoredFetch(
   '/api/progress',
   {
     method: 'POST',
-    body: JSON.stringify({ lessonSlug: 'intro', completed: true })
+    body: JSON.stringify({ letterId: 'letter-123', generated: true })
   },
   { endpoint: '/api/progress', method: 'POST' }
 );
@@ -1410,7 +1410,7 @@ export async function monitoredQuery<T>(
 // Usage
 const result = await monitoredQuery(
   () => supabase
-    .from('course_progress')
+    .from('letters')
     .select('*')
     .eq('user_id', userId),
   'get_user_progress'
@@ -1467,7 +1467,7 @@ Cloudflare Dashboard → Speed → Overview
 
 **Run Lighthouse CI in GitHub Actions:**
 
-See [deployment.md](file:///home/mmxlvlxix/code/indigocosmo/devdocs/deployment.md#L490-L495) for CI/CD integration.
+See [deployment.md](./deployment.md#L490-L495) for CI/CD integration.
 
 ### Monitoring Quick Reference
 
@@ -1504,14 +1504,14 @@ This document provides comprehensive error handling and monitoring guidelines fo
 - ✅ UptimeRobot for uptime monitoring (50 monitors free)
 
 **Related Documentation:**
-- [PRD - Analytics & Tracking](file:///home/mmxlvlxix/code/indigocosmo/devdocs/prd.md#L1590-L1650)
-- [Deployment Guide - Monitoring](file:///home/mmxlvlxix/code/indigocosmo/devdocs/deployment.md#L640-L645)
-- [AGENTS.md - Error Handling Patterns](file:///home/mmxlvlxix/code/indigocosmo/AGENTS.md#L778-L834)
-- [Security & Privacy](file:///home/mmxlvlxix/code/indigocosmo/devdocs/security-privacy.md)
-- [Testing Strategy](file:///home/mmxlvlxix/code/indigocosmo/devdocs/testing-strategy.md)
+- [PRD - Analytics & Tracking](../prd.md#L1590-L1650)
+- [Deployment Guide - Monitoring](./deployment.md#L640-L645)
+- [AGENTS.md - Error Handling Patterns](../../AGENTS.md#L778-L834)
+- [Security & Privacy](./security-privacy.md)
+- [Testing Strategy](./testing-strategy.md)
 
 ---
 
 **Last Updated**: December 2025  
 **Version**: 1.0  
-**Platform**: indigocosmo.club
+**Platform**: cover.me

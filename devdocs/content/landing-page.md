@@ -19,7 +19,7 @@ Drive signups, cover letter generations, and resume uploads by job-seekers. Ever
 - Reassure about privacy—"No data stored beyond what's needed."
 - Avoid jargon, but use tech/job-search keywords for SEO
 - Keep CTA language strong, direct, benefit-oriented
-- No mystical/spiritual metaphors—professional, slightly tech-informal tone
+- Use professional, career-focused tone appropriate for job seekers
 
 ---
 ## SEO/Performance
@@ -33,4 +33,4 @@ Drive signups, cover letter generations, and resume uploads by job-seekers. Ever
 
 ---
 ## TODO-REWRITE
-Ensure all content, layout, and UX guidelines reflect cover.me’s product, not legacy course platform flows.
+Ensure all content, layout, and UX guidelines reflect cover.me’s AI cover letter writer product, not legacy education platform flows.

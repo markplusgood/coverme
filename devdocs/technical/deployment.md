@@ -2,7 +2,7 @@
 
 ## Overview
 
-This guide provides comprehensive instructions for deploying the indigocosmo.club spiritual course platform to Cloudflare Pages. The platform uses a modern Jamstack architecture with SvelteKit, Supabase for backend services, and Cloudflare for hosting and edge computing.
+This guide provides comprehensive instructions for deploying the cover.me AI cover letter writer platform to Cloudflare Pages. The platform uses a modern Jamstack architecture with SvelteKit, Supabase for backend services, and Cloudflare for hosting and edge computing.
 
 ## Prerequisites
 
@@ -35,7 +35,7 @@ Before deploying, ensure you have:
 1. Select "Connect to Git" option
 2. Choose GitHub as your Git provider
 3. Authorize Cloudflare to access your GitHub account
-4. Select your indigocosmo repository from the list
+4. Select your coverme repository from the list
 5. Click "Begin setup"
 
 ### Step 4: Configure Build Settings
@@ -105,7 +105,7 @@ export default config;
 **File**: `wrangler.toml`
 
 ```toml
-name = "indigocosmo"
+name = "coverme"
 compatibility_date = "2024-01-01"
 compatibility_flags = ["nodejs_compat"]
 
@@ -121,7 +121,7 @@ globs = ["**/*.js"]
 
 # Environment variables (defined in Cloudflare dashboard)
 [vars]
-PUBLIC_SITE_URL = "https://indigocosmo.club"
+PUBLIC_SITE_URL = "https://cover.me"
 
 # KV namespaces (if using Cloudflare KV)
 [[kv_namespaces]]
@@ -166,7 +166,12 @@ PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
 # Site Configuration
-PUBLIC_SITE_URL=https://indigocosmo.club
+PUBLIC_SITE_URL=https://cover.me
+
+# AI Provider Configuration
+OPENAI_API_BASE_URL=https://openrouter.ai/api/v1
+OPENAI_API_KEY=your_openrouter_api_key
+AI_MODEL=google/gemini-2.0-flash-exp:free
 
 # Analytics (Optional)
 PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
@@ -216,6 +221,11 @@ PUBLIC_SUPABASE_URL=your_local_supabase_url
 PUBLIC_SUPABASE_ANON_KEY=your_local_anon_key
 SUPABASE_SERVICE_ROLE_KEY=your_local_service_role_key
 
+# AI Provider Configuration
+OPENAI_API_BASE_URL=https://openrouter.ai/api/v1
+OPENAI_API_KEY=your_openrouter_api_key
+AI_MODEL=google/gemini-2.0-flash-exp:free
+
 # Add other variables as needed
 ```
 
@@ -226,7 +236,7 @@ SUPABASE_SERVICE_ROLE_KEY=your_local_service_role_key
 ### Step 1: Purchase Domain
 
 1. Purchase a domain from a registrar (Namecheap, GoDaddy, etc.)
-2. Recommended: `indigocosmo.club` or similar spiritual-themed domain
+2. Recommended: `cover.me` or similar career-focused domain
 
 ### Step 2: Add Domain to Cloudflare
 
@@ -253,7 +263,7 @@ Target: [your-project].pages.dev
 
 1. In your Pages project, go to "Custom domains"
 2. Click "Set up a custom domain"
-3. Enter your domain (e.g., `indigocosmo.club`)
+3. Enter your domain (e.g., `cover.me`)
 4. Add `www` subdomain if desired
 5. Cloudflare will automatically provision SSL certificates
 
@@ -314,7 +324,7 @@ Add security headers via `_headers` file in your `static` directory:
 /api/*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
-  Access-Control-Allow-Origin: https://indigocosmo.club
+  Access-Control-Allow-Origin: https://cover.me
   Access-Control-Allow-Methods: GET, POST, PUT, DELETE
   Access-Control-Allow-Headers: Content-Type, Authorization
 ```
@@ -375,6 +385,9 @@ jobs:
           # Add your environment variables here
           PUBLIC_SUPABASE_URL: ${{ secrets.PUBLIC_SUPABASE_URL }}
           PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.PUBLIC_SUPABASE_ANON_KEY }}
+          OPENAI_API_BASE_URL: ${{ secrets.OPENAI_API_BASE_URL }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          AI_MODEL: ${{ secrets.AI_MODEL }}
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/pages-action@v1
@@ -428,10 +441,15 @@ Add these secrets to your GitHub repository:
 ```bash
 CLOUDFLARE_API_TOKEN=your_cloudflare_api_token
 CLOUDFLARE_ACCOUNT_ID=your_cloudflare_account_id
-CLOUDFLARE_PROJECT_NAME=indigocosmo
+CLOUDFLARE_PROJECT_NAME=coverme
 
 PUBLIC_SUPABASE_URL=https://your-project.supabase.co
 PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+
+# AI Provider Configuration
+OPENAI_API_BASE_URL=https://openrouter.ai/api/v1
+OPENAI_API_KEY=your_openrouter_api_key
+AI_MODEL=google/gemini-2.0-flash-exp:free
 
 # Staging versions for previews
 STAGING_SUPABASE_URL=https://staging-project.supabase.co
@@ -466,8 +484,8 @@ https://[branch-name].[project-name].pages.dev
 ```
 
 Example:
-- PR #123: `https://pr-123-indigocosmo.pages.dev`
-- Feature branch: `https://feature-new-ui.indigocosmo.pages.dev`
+- PR #123: `https://pr-123-coverme.pages.dev`
+- Feature branch: `https://feature-new-ui.coverme.pages.dev`
 
 ### Preview Environment Variables
 
@@ -520,7 +538,7 @@ GitHub Actions can automatically comment on PRs with preview URLs:
         issue_number: context.issue.number,
         owner: context.repo.owner,
         repo: context.repo.repo,
-        body: `🚀 Preview deployment ready: https://pr-${{ github.event.number }}-indigocosmo.pages.dev`
+        body: `🚀 Preview deployment ready: https://pr-${{ github.event.number }}-coverme.pages.dev`
       })
 ```
 
@@ -674,7 +692,7 @@ Use Cloudflare Images or Image Resizing:
      loading="lazy">
 
 <!-- With Cloudflare Image Resizing -->
-<img src="https://images.indigocosmo.club/cdn-cgi/image/width=800,format=webp/images/hero.jpg"
+<img src="https://images.cover.me/cdn-cgi/image/width=800,format=webp/images/hero.jpg"
      alt="Hero image">
 ```
 
@@ -785,4 +803,4 @@ initRum({
 
 **Last Updated**: December 2025
 **Version**: 1.0
-**Platform**: indigocosmo.club
+**Platform**: cover.me

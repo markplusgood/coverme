@@ -1,8 +1,8 @@
-# SEO & Analytics Strategy - indigocosmo.club
+# SEO & Analytics Strategy - cover.me
 
 ## Overview
 
-This document outlines the comprehensive SEO and analytics strategy for the indigocosmo.club spiritual course platform. It covers meta tags implementation, structured data schemas, sitemap generation, analytics tracking, conversion funnel monitoring, and A/B testing framework.
+This document outlines the comprehensive SEO and analytics strategy for the cover.me AI cover letter writer platform. It covers meta tags implementation, structured data schemas, sitemap generation, analytics tracking, conversion funnel monitoring, and A/B testing framework.
 
 ## SEO Implementation
 
@@ -10,28 +10,28 @@ This document outlines the comprehensive SEO and analytics strategy for the indi
 
 #### 1. Landing Page (`/+page.svelte`)
 
-**Primary Goal**: High conversion, brand awareness, spiritual search terms
+**Primary Goal**: High conversion, brand awareness, career search terms
 
 ```typescript
 // src/lib/utils/seo.ts
 export function getLandingPageMeta() {
   return {
-    title: 'Платформа Духовного Развития | Обучение Ясновидению и Астральным Путешествиям',
-    description: 'Раскройте свой духовный потенциал с помощью структурированных курсов по ясновидению, астральным путешествиям и дальновидению. Присоединяйтесь к нашему сообществу искателей.',
-    keywords: 'ясновидение, астральные путешествия, дальновидение, духовные курсы, третий глаз, медитация на чакры, духовное пробуждение, сакральная геометрия, золотое сечение',
+    title: 'Создайте Профессиональное Сопроводительное Письмо | cover.me',
+    description: 'Генерируйте индивидуальные сопроводительные письма с помощью ИИ. Получите идеальное письмо для вашей работы за минуты.',
+    keywords: 'сопроводительное письмо, резюме, поиск работы, карьера, ИИ генерация, профессиональное письмо, трудоустройство, карьерный рост',
     og: {
-      title: 'Пробудите Свою Духовную Силу | indigocosmo.club',
-      description: 'Трансформируйте свое сознание с помощью экспертных духовных курсов. Начните свой путь к мастерству ясновидения и астральных путешествий.',
+      title: 'Создайте Профессиональное Сопроводительное Письмо | cover.me',
+      description: 'Генерируйте индивидуальные сопроводительные письма с помощью ИИ. Получите идеальное письмо для вашей работы за минуты.',
       image: '/images/og/landing-hero.jpg',
       type: 'website'
     },
     twitter: {
       card: 'summary_large_image',
-      title: 'Платформа Духовного Развития | Обучение Ясновидению и Астральным Путешествиям',
-      description: 'Раскройте свой духовный потенциал с помощью структурированных курсов по ясновидению, астральным путешествиям и дальновидению.',
+      title: 'Создайте Профессиональное Сопроводительное Письмо | cover.me',
+      description: 'Генерируйте индивидуальные сопроводительные письма с помощью ИИ. Получите идеальное письмо для вашей работы за минуты.',
       image: '/images/og/landing-hero.jpg'
     },
-    canonical: 'https://indigocosmo.club'
+    canonical: 'https://cover.me'
   };
 }
 ```
@@ -39,20 +39,20 @@ export function getLandingPageMeta() {
 **Key Elements**:
 - Title: 50-60 characters, includes primary keywords
 - Description: 150-160 characters, compelling value proposition
-- Keywords: Primary spiritual terms, course topics
+- Keywords: Primary career terms, cover letter topics
 - Open Graph: Optimized for social sharing
 - Twitter Cards: Large image format for engagement
 
 #### 2. Blog Post Pages (`/portal/blog/[slug]/+page.svelte`)
 
-**Primary Goal**: Organic traffic from spiritual content searches
+**Primary Goal**: Organic traffic from career content searches
 
 ```typescript
 // Dynamic meta based on frontmatter
 export function getBlogPostMeta(post: BlogPost) {
-  const title = `${post.title} | Блог о Духовном Развитии`;
+  const title = `${post.title} | Блог о Карьерном Развитии`;
   const description = post.excerpt || post.title;
-  const keywords = post.tags?.join(', ') || 'духовный блог, ясновидение, медитация, сакральная геометрия';
+  const keywords = post.tags?.join(', ') || 'карьерный блог, сопроводительные письма, поиск работы, карьерный рост';
 
   return {
     title: title.length > 60 ? `${post.title.substring(0, 55)}... | Блог` : title,
@@ -66,7 +66,7 @@ export function getBlogPostMeta(post: BlogPost) {
       published_time: post.publishedAt,
       modified_time: post.updatedAt,
       author: post.author,
-      section: 'Духовное Образование',
+      section: 'Карьерное Развитие',
       tags: post.tags
     },
     twitter: {
@@ -75,12 +75,12 @@ export function getBlogPostMeta(post: BlogPost) {
       description: post.excerpt,
       image: post.coverImage
     },
-    canonical: `https://indigocosmo.club/portal/blog/${post.slug}`,
+    canonical: `https://cover.me/blog/${post.slug}`,
     article: {
       published_time: post.publishedAt,
       modified_time: post.updatedAt,
       author: post.author,
-      section: 'Духовное Образование',
+      section: 'Карьерное Развитие',
       tag: post.tags
     }
   };
@@ -95,35 +95,35 @@ export function getBlogPostMeta(post: BlogPost) {
 - Author information
 - Publication dates
 
-#### 3. Course Lesson Pages (`/portal/course/lessons/[slug]/+page.svelte`)
+#### 3. Cover Letter Example Pages (`/app/examples/[slug]/+page.svelte`)
 
-**Primary Goal**: Course-specific SEO, educational content ranking
+**Primary Goal**: Cover letter-specific SEO, career content ranking
 
 ```typescript
-export function getLessonPageMeta(lesson: Lesson, course: Course) {
-  const title = `${lesson.title} | ${course.title} - Духовный Курс`;
-  const description = `Изучите ${lesson.title.toLowerCase()} в нашем полном курсе ${course.title}. ${lesson.objectives?.join('. ')}`;
+export function getExamplePageMeta(example: CoverLetterExample, job: Job) {
+  const title = `${example.title} | ${job.title} - Пример Сопроводительного Письма`;
+  const description = `Посмотрите пример ${example.title.toLowerCase()} для должности ${job.title}. ${example.keyPoints?.join('. ')}`;
 
   return {
-    title: title.length > 60 ? `${lesson.title} | Курс` : title,
+    title: title.length > 60 ? `${example.title} | Пример` : title,
     description: description.length > 160 ? `${description.substring(0, 155)}...` : description,
-    keywords: `духовный курс, ${course.title.toLowerCase()}, ${lesson.title.toLowerCase()}, ясновидение, астральные путешествия`,
+    keywords: `сопроводительное письмо, ${job.title.toLowerCase()}, ${example.title.toLowerCase()}, карьера, поиск работы`,
     og: {
-      title: lesson.title,
-      description: lesson.objectives?.join('. '),
-      image: `/images/courses/${course.slug}/lesson-${lesson.order}.jpg`,
+      title: example.title,
+      description: example.keyPoints?.join('. '),
+      image: `/images/examples/${job.slug}/example-${example.order}.jpg`,
       type: 'article',
-      section: 'Содержание Курса'
+      section: 'Примеры Сопроводительных Писем'
     },
     twitter: {
       card: 'summary_large_image',
-      title: lesson.title,
-      description: lesson.objectives?.join('. ')
+      title: example.title,
+      description: example.keyPoints?.join('. ')
     },
-    canonical: `https://indigocosmo.club/portal/course/lessons/${lesson.slug}`,
+    canonical: `https://cover.me/cover-letter-examples/${example.slug}`,
     article: {
-      section: course.title,
-      tag: ['духовное образование', 'содержание курса']
+      section: job.title,
+      tag: ['карьерное развитие', 'примеры писем']
     }
   };
 }
@@ -136,15 +136,15 @@ export function getLessonPageMeta(lesson: Lesson, course: Course) {
 ```typescript
 export function getAuthPageMeta(page: 'login' | 'signup' | 'reset') {
   const titles = {
-    login: 'Вход | indigocosmo.club',
-    signup: 'Присоединиться к Сообществу | indigocosmo.club',
-    reset: 'Сброс Пароля | indigocosmo.club'
+    login: 'Вход | cover.me',
+    signup: 'Создать Аккаунт | cover.me',
+    reset: 'Сброс Пароля | cover.me'
   };
 
   const descriptions = {
-    login: 'Войдите, чтобы продолжить свое духовное обучение.',
-    signup: 'Начните свой путь духовного пробуждения. Присоединяйтесь к нашему сообществу.',
-    reset: 'Сбросьте пароль, чтобы продолжить обучение.'
+    login: 'Войдите, чтобы создать сопроводительные письма.',
+    signup: 'Начните создавать профессиональные сопроводительные письма с помощью ИИ.',
+    reset: 'Сбросьте пароль, чтобы продолжить работу.'
   };
 
   return {
@@ -169,53 +169,53 @@ export function getAuthPageMeta(page: 'login' | 'signup' | 'reset') {
 {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "indigocosmo.club",
-  "url": "https://indigocosmo.club",
-  "logo": "https://indigocosmo.club/images/logo.png",
-  "description": "Платформа духовных курсов, предлагающая структурированное обучение ясновидению, астральным путешествиям и дальновидению.",
+  "name": "cover.me",
+  "url": "https://cover.me",
+  "logo": "https://cover.me/images/logo.png",
+  "description": "Платформа для создания профессиональных сопроводительных писем с помощью искусственного интеллекта.",
   "foundingDate": "2025",
   "sameAs": [
-    "https://twitter.com/indigocosmo",
-    "https://facebook.com/indigocosmo",
-    "https://instagram.com/indigocosmo"
+    "https://twitter.com/covermeai",
+    "https://facebook.com/covermeai",
+    "https://instagram.com/covermeai"
   ],
   "contactPoint": {
     "@type": "ContactPoint",
-    "email": "hello@indigocosmo.club",
+    "email": "support@cover.me",
     "contactType": "customer service",
     "availableLanguage": "Russian"
   }
 }
 ```
 
-#### 2. Course Schema (Course Overview Pages)
+#### 2. Cover Letter Schema (Cover Letter Overview Pages)
 
 ```json
-// For /portal/course pages
+// For /app/examples pages
 {
   "@context": "https://schema.org",
-  "@type": "Course",
-  "name": "Полный Курс Ясновидения",
+  "@type": "CoverLetter",
+  "name": "Профессиональное Сопроводительное Письмо",
   "description": "Комплексный курс по развитию способностей ясновидения через структурированные уроки и практики.",
   "provider": {
     "@type": "Organization",
-    "name": "indigocosmo.club"
+    "name": "cover.me"
   },
-  "courseMode": "online",
-  "educationalLevel": "Beginner to Advanced",
+  "jobMode": "remote",
+  "experienceLevel": "Entry to Senior",
   "inLanguage": "ru",
   "teaches": [
-    "Развитие ясновидения",
-    "Активация третьего глаза",
-    "Интуитивное восприятие",
-    "Чувствование энергии"
+    "Создание профессиональных сопроводительных писем",
+    "Оптимизация резюме для поиска работы",
+    "Карьерное консультирование",
+    "Подготовка к собеседованиям"
   ],
-  "hasCourseInstance": {
-    "@type": "CourseInstance",
-    "courseMode": "online",
-    "instructor": {
-      "@type": "Person",
-      "name": "Инструктор Духовных Курсов"
+  "hasCoverLetterInstance": {
+    "@type": "JobPosting",
+    "jobMode": "remote",
+    "hiringOrganization": {
+      "@type": "Organization",
+      "name": "cover.me"
     }
   },
   "aggregateRating": {
@@ -233,31 +233,31 @@ export function getAuthPageMeta(page: 'login' | 'signup' | 'reset') {
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Пробуждение Третьего Глаза: Руководство для Начинающих",
-  "description": "Изучите базовые практики для открытия чакры третьего глаза...",
-  "image": "https://indigocosmo.club/images/blog/third-eye-cover.jpg",
+  "headline": "Как Написать Идеальное Сопроводительное Письмо: Руководство для Начинающих",
+  "description": "Узнайте, как создать идеальное сопроводительное письмо для вашей работы...",
+  "image": "https://cover.me/images/blog/cover-letter-tips.jpg",
   "datePublished": "2025-11-15T10:00:00Z",
   "dateModified": "2025-11-16T14:30:00Z",
   "inLanguage": "ru",
   "author": {
     "@type": "Person",
-    "name": "Инструктор Курса",
-    "url": "https://indigocosmo.club/authors/instructor"
+    "name": "Карьерный Эксперт",
+    "url": "https://cover.me/authors/career-expert"
   },
   "publisher": {
     "@type": "Organization",
-    "name": "indigocosmo.club",
+    "name": "cover.me",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://indigocosmo.club/images/logo.png"
+      "url": "https://cover.me/images/logo.png"
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://indigocosmo.club/portal/blog/awakening-third-eye-guide"
+    "@id": "https://cover.me/blog/cover-letter-tips"
   },
-  "articleSection": "Духовное Образование",
-  "keywords": ["ясновидение", "чакры", "для начинающих", "третий глаз"]
+  "articleSection": "Карьерное Развитие",
+  "keywords": ["сопроводительное письмо", "поиск работы", "для начинающих", "карьера"]
 }
 ```
 
@@ -273,25 +273,25 @@ export function getAuthPageMeta(page: 'login' | 'signup' | 'reset') {
       "@type": "ListItem",
       "position": 1,
       "name": "Главная",
-      "item": "https://indigocosmo.club"
+      "item": "https://cover.me"
     },
     {
       "@type": "ListItem",
       "position": 2,
-      "name": "Курс",
-      "item": "https://indigocosmo.club/portal/course"
+      "name": "Примеры",
+      "item": "https://cover.me/examples"
     },
     {
       "@type": "ListItem",
       "position": 3,
-      "name": "Уроки",
-      "item": "https://indigocosmo.club/portal/course/lessons"
+      "name": "Цены",
+      "item": "https://cover.me/pricing"
     },
     {
       "@type": "ListItem",
       "position": 4,
-      "name": "Введение в Ясновидение",
-      "item": "https://indigocosmo.club/portal/course/lessons/intro-to-clairvoyance"
+      "name": "Как Создать Сопроводительное Письмо",
+      "item": "https://cover.me/guide"
     }
   ]
 }
@@ -306,18 +306,18 @@ export function getAuthPageMeta(page: 'login' | 'signup' | 'reset') {
   "mainEntity": [
     {
       "@type": "Question",
-      "name": "Что такое ясновидение?",
+      "name": "Что такое сопроводительное письмо?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Ясновидение — это способность воспринимать информацию за пределами обычного чувственного контакта, часто называемая «ясным видением» или интуитивным восприятием."
+        "text": "Сопроводительное письмо — это документ, который отправляется вместе с резюме и объясняет, почему вы подходите для конкретной должности."
       }
     },
     {
       "@type": "Question",
-      "name": "Нужен ли мне предыдущий опыт?",
+      "name": "Нужен ли мне предыдущий опыт для создания сопроводительного письма?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Никакого предварительного опыта не требуется. Наши курсы разработаны для начинающих и включают базовые практики и медитации."
+        "text": "Никакого предварительного опыта не требуется. Наш ИИ поможет вам создать профессиональное сопроводительное письмо независимо от вашего уровня опыта."
       }
     }
   ]
@@ -333,16 +333,16 @@ export function getAuthPageMeta(page: 'login' | 'signup' | 'reset') {
 ```typescript
 import type { RequestHandler } from './$types';
 import { getAllBlogPosts } from '$lib/utils/content';
-import { getAllLessons } from '$lib/utils/course-loader';
+import { getAllExamples } from '$lib/utils/example-loader';
 
 export const GET: RequestHandler = async () => {
-  const baseUrl = 'https://indigocosmo.club';
+  const baseUrl = 'https://cover.me';
 
   // Static pages
   const staticPages = [
     '',
-    '/portal/course',
-    '/portal/blog',
+    '/app/examples',
+    '/blog',
     '/auth/login',
     '/auth/signup'
   ];
@@ -350,17 +350,17 @@ export const GET: RequestHandler = async () => {
   // Dynamic blog posts
   const blogPosts = await getAllBlogPosts();
   const blogUrls = blogPosts.map(post =>
-    `/portal/blog/${post.slug}`
+    `/blog/${post.slug}`
   );
 
-  // Dynamic course lessons
-  const lessons = await getAllLessons();
-  const lessonUrls = lessons.map(lesson =>
-    `/portal/course/lessons/${lesson.slug}`
+  // Dynamic cover letter examples
+  const examples = await getAllExamples();
+  const exampleUrls = examples.map(example =>
+    `/examples/${example.slug}`
   );
 
   // Combine all URLs
-  const allUrls = [...staticPages, ...blogUrls, ...lessonUrls];
+  const allUrls = [...staticPages, ...blogUrls, ...exampleUrls];
 
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -382,14 +382,14 @@ ${allUrls.map(url => `  <url>
 
 function getChangeFrequency(url: string): string {
   if (url.includes('/blog/')) return 'monthly';
-  if (url.includes('/course/lessons/')) return 'weekly';
+  if (url.includes('/examples/')) return 'weekly';
   if (url === '') return 'daily';
   return 'monthly';
 }
 
 function getPriority(url: string): string {
   if (url === '') return '1.0';
-  if (url.includes('/course/')) return '0.9';
+  if (url.includes('/examples/')) return '0.9';
   if (url.includes('/blog/')) return '0.8';
   return '0.5';
 }
@@ -410,7 +410,7 @@ For larger sites, create a sitemap index:
 sitemap-index.xml
 ├── sitemap-static.xml
 ├── sitemap-blog.xml
-├── sitemap-courses.xml
+├── sitemap-examples.xml
 └── sitemap-library.xml
 ```
 
@@ -424,7 +424,7 @@ Allow: /
 
 # Block auth pages from indexing
 Disallow: /auth/
-Disallow: /portal/settings/
+Disallow: /settings/
 Disallow: /api/
 
 # Allow all major search engines
@@ -438,7 +438,7 @@ User-agent: Slurp
 Allow: /
 
 # Sitemap location
-Sitemap: https://indigocosmo.club/sitemap.xml
+Sitemap: https://cover.me/sitemap.xml
 ```
 
 **Advanced robots.txt for SEO**:
@@ -454,8 +454,8 @@ Disallow: /*filter=*
 
 # Allow important directories
 Allow: /images/
-Allow: /portal/blog/
-Allow: /portal/course/
+Allow: /blog/
+Allow: /examples/
 
 # Block admin areas
 Disallow: /admin/
@@ -551,54 +551,54 @@ export function trackPageView(url: string, title?: string) {
   });
 }
 
-// Course-specific events
-export const courseAnalytics = {
-  courseStart: (courseName: string, courseId: string) => trackGA4Event('course_start', {
-    course_name: courseName,
-    course_id: courseId,
+// Cover letter generation events
+export const letterAnalytics = {
+  generationStart: (jobTitle: string, jobId: string) => trackGA4Event('generation_start', {
+    job_title: jobTitle,
+    job_id: jobId,
     timestamp: new Date().toISOString()
   }),
 
-  lessonComplete: (lessonName: string, courseName: string, progress: number) => trackGA4Event('lesson_complete', {
-    lesson_name: lessonName,
-    course_name: courseName,
-    progress_percentage: progress,
+  generationComplete: (letterId: string, jobTitle: string, tone: string) => trackGA4Event('generation_complete', {
+    letter_id: letterId,
+    job_title: jobTitle,
+    tone: tone,
     completion_time: new Date().toISOString()
   }),
 
-  assignmentSubmit: (assignmentName: string, courseName: string) => trackGA4Event('assignment_submit', {
-    assignment_name: assignmentName,
-    course_name: courseName,
-    submission_timestamp: new Date().toISOString()
+  exportComplete: (letterId: string, format: string) => trackGA4Event('export_complete', {
+    letter_id: letterId,
+    format: format,
+    export_timestamp: new Date().toISOString()
   })
 };
 
 // E-commerce events (future)
 export const ecommerceAnalytics = {
-  checkoutInitiate: (courseName: string, price: number) => trackGA4Event('begin_checkout', {
+  checkoutInitiate: (planName: string, price: number) => trackGA4Event('begin_checkout', {
     currency: 'USD',
     value: price,
     items: [{
-      item_id: courseName.toLowerCase().replace(/\s+/g, '_'),
-      item_name: courseName,
+      item_id: planName.toLowerCase().replace(/\s+/g, '_'),
+      item_name: planName,
       price: price,
       quantity: 1,
-      item_category: 'spiritual_course'
+      item_category: 'cover_letter_service'
     }]
   }),
 
-  purchaseComplete: (transactionId: string, courseName: string, revenue: number) => trackGA4Event('purchase', {
+  purchaseComplete: (transactionId: string, planName: string, revenue: number) => trackGA4Event('purchase', {
     transaction_id: transactionId,
     currency: 'USD',
     value: revenue,
     tax: 0,
     shipping: 0,
     items: [{
-      item_id: courseName.toLowerCase().replace(/\s+/g, '_'),
-      item_name: courseName,
+      item_id: planName.toLowerCase().replace(/\s+/g, '_'),
+      item_name: planName,
       price: revenue,
       quantity: 1,
-      item_category: 'spiritual_course'
+      item_category: 'cover_letter_service'
     }]
   })
 };
@@ -678,19 +678,19 @@ export function trackMetaEvent(
 
 export const metaAnalytics = {
   signup: () => trackMetaEvent('Lead', {
-    content_name: 'Course Signup',
-    content_category: 'Spiritual Learning'
+    content_name: 'Account Signup',
+    content_category: 'Cover Letter Service'
   }),
 
-  courseStart: (courseName: string) => trackMetaEvent('Subscribe', {
-    content_name: courseName,
-    content_category: 'Spiritual Course'
+  generationStart: (jobTitle: string) => trackMetaEvent('Subscribe', {
+    content_name: jobTitle,
+    content_category: 'Cover Letter Service'
   }),
 
-  purchase: (courseName: string, value: number) => trackMetaEvent('Purchase', {
-    content_name: courseName,
+  purchase: (planName: string, value: number) => trackMetaEvent('Purchase', {
+    content_name: planName,
     content_type: 'product',
-    content_ids: [courseName.toLowerCase().replace(/\s+/g, '_')],
+    content_ids: [planName.toLowerCase().replace(/\s+/g, '_')],
     value: value,
     currency: 'USD'
   })
@@ -792,14 +792,14 @@ export const tiktokAnalytics = {
     currency: 'USD'
   }),
 
-  courseStart: (courseName: string) => trackTikTokEvent('Subscribe', {
-    content_name: courseName,
+  generationStart: (jobTitle: string) => trackTikTokEvent('Subscribe', {
+    content_name: jobTitle,
     value: 0,
     currency: 'USD'
   }),
 
-  purchase: (courseName: string, value: number) => trackTikTokEvent('Subscribe', {
-    content_name: courseName,
+  purchase: (planName: string, value: number) => trackTikTokEvent('Subscribe', {
+    content_name: planName,
     value: value,
     currency: 'USD',
     transaction_id: `TT_${Date.now()}`
@@ -818,7 +818,7 @@ declare global {
 
 #### 1. Primary Conversion Funnel
 
-**Awareness → Interest → Consideration → Purchase → Retention**
+**Awareness → Interest → Consideration → Generation → Retention**
 
 ```
 1. Landing Page Visit
@@ -827,25 +827,25 @@ declare global {
    ↓ (70% conversion target)
 3. Email Verification
    ↓ (50% conversion target)
-4. Course Start (First Lesson)
+4. Letter Generation Start
    ↓ (40% conversion target)
-5. Course Completion (30% lessons)
+  5. Letter Generation Complete (30% users)
    ↓ (20% conversion target)
-6. Advanced Course Purchase
+6. Export/Download
    ↓ (60% conversion target)
-7. Repeat Purchase/Referral
+7. Repeat Generation/Referral
 ```
 
 #### 2. Micro-Funnels
 
 **Blog Engagement Funnel**:
 ```
-Blog Post View → Read Time > 3min → Social Share → Email Signup → Course Start
+Blog Post View → Read Time > 3min → Social Share → Email Signup → Letter Generation
 ```
 
-**Course Engagement Funnel**:
+**Letter Generation Funnel**:
 ```
-Lesson View → Mark Complete → Assignment Submit → Next Lesson → Course Completion
+Generation Start → Preview → Edit → Export → Generation Complete
 ```
 
 #### 3. Funnel Analytics Implementation
@@ -862,10 +862,10 @@ export const primaryFunnel: FunnelStep[] = [
   { name: 'Landing Page Visit', event: 'page_view', conversionRate: 100 },
   { name: 'Email Signup', event: 'sign_up', conversionRate: 30 },
   { name: 'Email Verification', event: 'email_verified', conversionRate: 70 },
-  { name: 'Course Start', event: 'course_start', conversionRate: 50 },
-  { name: 'Lesson Completion', event: 'lesson_complete', conversionRate: 40 },
-  { name: 'Course Completion', event: 'course_complete', conversionRate: 30 },
-  { name: 'Repeat Purchase', event: 'purchase', conversionRate: 20 }
+  { name: 'Generation Start', event: 'generation_start', conversionRate: 50 },
+  { name: 'Generation Complete', event: 'generation_complete', conversionRate: 40 },
+  { name: 'Export Complete', event: 'export_complete', conversionRate: 30 },
+  { name: 'Repeat Generation', event: 'repeat_generation', conversionRate: 20 }
 ];
 
 export function trackFunnelProgress(stepName: string, userId: string, metadata?: any) {
@@ -906,7 +906,7 @@ export interface UserCohort {
   signup_month: string;
   acquisition_channel: string;
   user_type: 'free' | 'premium';
-  course_progress: number;
+  letter_generation: number;
 }
 
 export function getUserCohort(user: User): UserCohort {
@@ -914,7 +914,7 @@ export function getUserCohort(user: User): UserCohort {
     signup_month: new Date(user.created_at).toISOString().slice(0, 7),
     acquisition_channel: user.acquisition_channel || 'organic',
     user_type: user.subscription_status || 'free',
-    course_progress: calculateProgress(user.id)
+    letter_generation: calculateGenerationCount(user.id)
   };
 }
 
@@ -923,7 +923,7 @@ export function trackCohortMetrics(cohort: UserCohort, event: string, value?: an
     cohort_month: cohort.signup_month,
     acquisition_channel: cohort.acquisition_channel,
     user_type: cohort.user_type,
-    course_progress: cohort.course_progress,
+    letter_generation: cohort.letter_generation,
     event_name: event,
     event_value: value
   });
@@ -1093,29 +1093,29 @@ abTesting.registerTest({
 <section class="hero-section">
   <!-- Dynamic hero image based on test variant -->
   {#if heroVariant === 'control'}
-    <img src="/images/hero/control.jpg" alt="Spiritual awakening" />
+    <img src="/images/hero/control.jpg" alt="Professional cover letter generation" />
   {:else if heroVariant === 'variant_a'}
-    <img src="/images/hero/variant-a.jpg" alt="Meditating woman" />
+    <img src="/images/hero/variant-a.jpg" alt="AI-powered resume optimization" />
   {:else if heroVariant === 'variant_b'}
-    <img src="/images/hero/variant-b.jpg" alt="Crystal energy" />
+    <img src="/images/hero/variant-b.jpg" alt="Career development tools" />
   {/if}
 
   <!-- Dynamic headline -->
   {#if headlineVariant === 'control'}
-    <h1>Awaken Your Spiritual Power</h1>
+    <h1>Create Professional Cover Letters with AI</h1>
   {:else if headlineVariant === 'variant_a'}
-    <h1>Discover Your Clairvoyant Abilities</h1>
+    <h1>Get Your Dream Job with Perfect Cover Letters</h1>
   {:else if headlineVariant === 'variant_b'}
-    <h1>Master Astral Travel & Remote Viewing</h1>
+    <h1>AI-Powered Career Documents in Minutes</h1>
   {/if}
 
   <!-- Dynamic CTA -->
   {#if ctaVariant === 'control'}
-    <button on:click={handleCTAClick}>Start Your Journey</button>
+    <button on:click={handleCTAClick}>Generate Cover Letter</button>
   {:else if ctaVariant === 'variant_a'}
-    <button on:click={handleCTAClick}>Begin Free Course</button>
+    <button on:click={handleCTAClick}>Create My Cover Letter</button>
   {:else if ctaVariant === 'variant_b'}
-    <button on:click={handleCTAClick}>Unlock Your Third Eye</button>
+    <button on:click={handleCTAClick}>Get Started Free</button>
   {/if}
 </section>
 ```
@@ -1225,7 +1225,7 @@ function normalCDF(x: number): number {
 **Success Metrics**:
 - Primary: Conversion rate to signup
 - Secondary: Time on page, bounce rate, social shares
-- Tertiary: Course start rate, completion rate
+- Tertiary: Letter generation rate, export rate
 
 **Implementation Checklist**:
 - [ ] Define clear hypothesis for each test
@@ -1277,7 +1277,7 @@ Add to `.env`:
 
 ```env
 # SEO
-PUBLIC_SITE_URL=https://indigocosmo.club
+PUBLIC_SITE_URL=https://cover.me
 
 # Analytics
 PUBLIC_GA_MEASUREMENT_ID=G-XXXXXXXXXX
@@ -1295,14 +1295,14 @@ PUBLIC_AB_TESTING_ENABLED=true
 
 ### SEO KPIs
 - Organic search traffic growth: 40% month-over-month
-- Keyword rankings: Top 10 for primary spiritual terms
+- Keyword rankings: Top 10 for primary career terms
 - Page load speed: < 2.5s LCP
 - Core Web Vitals: All green scores
 
 ### Analytics KPIs
 - User acquisition cost: < $15 per signup
 - Conversion rate: > 3% landing to signup
-- Course completion rate: > 25%
+- Letter generation rate: > 25%
 - User retention: > 60% at day 30
 
 ### A/B Testing KPIs
@@ -1355,30 +1355,30 @@ posthog.capture('user_verified_email', {
   time_to_verify: '2 minutes'
 });
 
-// Course Engagement
-posthog.capture('course_started', {
-  course_name: 'Clairvoyance Course',
-  course_id: 'course_001'
+// Cover Letter Generation
+posthog.capture('generation_started', {
+  job_title: 'Software Engineer',
+  job_id: 'job_001'
 });
 
-posthog.capture('lesson_viewed', {
-  lesson_name: 'Introduction to Clairvoyance',
-  course: 'Course 1',
-  lesson_number: 1,
+posthog.capture('generation_viewed', {
+  letter_id: 'letter_001',
+  job_title: 'Software Engineer',
+  tone: 'professional',
   time_spent: 0 // Will be updated on exit
 });
 
-posthog.capture('lesson_completed', {
-  lesson_name: 'Introduction to Clairvoyance',
-  course: 'Course 1',
+posthog.capture('generation_completed', {
+  letter_id: 'letter_001',
+  job_title: 'Software Engineer',
   completion_rate: 100,
   time_spent: 1200 // seconds
 });
 
 // Assignment Tracking
 posthog.capture('assignment_started', {
-  assignment_name: 'Dream Journal Week 1',
-  course: 'Course 1'
+  export_format: 'PDF',
+  job_title: 'Software Engineer'
 });
 
 posthog.capture('assignment_submitted', {
@@ -1395,28 +1395,28 @@ posthog.capture('library_download', {
 });
 
 posthog.capture('blog_post_read', {
-  post_title: 'Awakening Your Third Eye',
+  post_title: 'How to Write a Perfect Cover Letter',
   reading_time: 5,
   scroll_depth: 85
 });
 
 // Payment & Conversion Events
 posthog.capture('checkout_initiated', {
-  course_name: 'Clairvoyance Course',
-  course_id: 'course_001',
-  price: 99.00,
+  plan_name: 'Premium Plan',
+  plan_id: 'plan_001',
+  price: 19.99,
   currency: 'USD',
   discount_code: null,
   cart_value: 99.00,
   items_count: 1,
   user_type: 'free',
-  source: 'course_page'
+  source: 'pricing_page'
 });
 
 posthog.capture('checkout_display', {
-  checkout_type: 'course_purchase',
-  course_name: 'Clairvoyance Course',
-  price: 99.00,
+  checkout_type: 'subscription_purchase',
+  plan_name: 'Premium Plan',
+  price: 19.99,
   currency: 'USD',
   discount_applied: false,
   time_to_display: 1250 // ms from page load
@@ -1426,7 +1426,7 @@ posthog.capture('payment_init', {
   payment_method: 'stripe',
   amount: 99.00,
   currency: 'USD',
-  course_name: 'Clairvoyance Course',
+  plan_name: 'Premium Plan',
   discount_applied: false,
   cart_value: 99.00,
   user_type: 'free',
@@ -1435,9 +1435,9 @@ posthog.capture('payment_init', {
 
 posthog.capture('payment_completed', {
   transaction_id: 'T_12345',
-  course_name: 'Clairvoyance Course',
-  course_id: 'course_001',
-  revenue: 99.00,
+  plan_name: 'Premium Plan',
+  plan_id: 'plan_001',
+  revenue: 19.99,
   currency: 'USD',
   payment_method: 'stripe',
   payment_processor: 'stripe',
@@ -1451,8 +1451,8 @@ posthog.capture('payment_completed', {
 
 posthog.capture('payment_failed', {
   transaction_id: 'T_12345_failed',
-  course_name: 'Clairvoyance Course',
-  amount: 99.00,
+  plan_name: 'Premium Plan',
+  amount: 19.99,
   currency: 'USD',
   payment_method: 'stripe',
   failure_reason: 'card_declined',
@@ -1464,18 +1464,18 @@ posthog.capture('payment_failed', {
 
 // Enhanced E-commerce Events
 posthog.capture('product_view', {
-  course_name: 'Clairvoyance Course',
-  course_id: 'course_001',
-  price: 99.00,
+  plan_name: 'Premium Plan',
+  plan_id: 'plan_001',
+  price: 19.99,
   currency: 'USD',
-  category: 'spiritual_course',
+  category: 'cover_letter_service',
   source: 'landing_page'
 });
 
 posthog.capture('add_to_cart', {
-  course_name: 'Clairvoyance Course',
-  course_id: 'course_001',
-  price: 99.00,
+  plan_name: 'Premium Plan',
+  plan_id: 'plan_001',
+  price: 19.99,
   currency: 'USD',
   quantity: 1,
   cart_value: 99.00
@@ -1483,8 +1483,8 @@ posthog.capture('add_to_cart', {
 
 posthog.capture('checkout_step', {
   step: 'payment_details',
-  course_name: 'Clairvoyance Course',
-  cart_value: 99.00,
+  plan_name: 'Premium Plan',
+  cart_value: 19.99,
   currency: 'USD'
 });
 
@@ -1492,7 +1492,7 @@ posthog.capture('checkout_step', {
 posthog.capture('session_start', {
   session_id: 'sess_12345',
   referrer: 'https://google.com',
-  landing_page: '/course/clairvoyance',
+  landing_page: '/pricing',
   user_agent: 'Mozilla/5.0...',
   screen_resolution: '1920x1080',
   timezone: 'America/New_York',
@@ -1515,11 +1515,11 @@ posthog.capture('checkout_abandon', {
 ```
 
 ### Advanced Analytics Features
-- **Funnel Analysis**: Track conversion through signup → course start → completion
+- **Funnel Analysis**: Track conversion through signup → generation start → completion
 - **Cohort Analysis**: Analyze user behavior by signup month/week
 - **Retention Tracking**: Monitor user return patterns and engagement over time
 - **A/B Test Integration**: Run experiments and measure impact on key metrics
-- **User Segmentation**: Create segments based on behavior, demographics, course progress
+- **User Segmentation**: Create segments based on behavior, demographics, generation activity
 - **Path Analysis**: Understand user navigation patterns through the platform
 
 ### Dashboard Setup

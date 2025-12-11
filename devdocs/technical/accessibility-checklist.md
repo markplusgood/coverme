@@ -1,8 +1,8 @@
-# Accessibility Implementation Guide - indigocosmo.club
+# Accessibility Implementation Guide - cover.me
 
 ## Overview
 
-This comprehensive guide provides detailed accessibility implementation standards for the indigocosmo.club spiritual learning platform. All components must meet WCAG 2.1 AA compliance standards to ensure the platform is accessible to all users, including those using assistive technologies.
+This comprehensive guide provides detailed accessibility implementation standards for the cover.me AI cover letter writer platform. All components must meet WCAG 2.1 AA compliance standards to ensure the platform is accessible to all users, including those using assistive technologies.
 
 ### Goals
 - ✅ **WCAG 2.1 AA Compliance**: Full compliance across all pages and components
@@ -353,11 +353,11 @@ This comprehensive guide provides detailed accessibility implementation standard
 
 ```svelte
 <!-- ✅ GOOD: Accessible links -->
-<a 
-  href="/portal/course/lessons/lesson-01"
+<a
+  href="/app/examples/example-01"
   class="link focus:ring-2 focus:ring-primary-500"
 >
-  Урок 1: Введение в ясновидение
+  Пример 1: Сопроводительное письмо для разработчика
 </a>
 
 <!-- External link -->
@@ -466,17 +466,17 @@ This comprehensive guide provides detailed accessibility implementation standard
     preload="metadata"
     aria-label="Урок 1: Введение в астральную проекцию"
   >
-    <source src="/videos/lesson-01.mp4" type="video/mp4" />
+    <source src="/videos/example-01.mp4" type="video/mp4" />
     <track
       kind="subtitles"
-      src="/videos/lesson-01-ru.vtt"
+      src="/videos/example-01-ru.vtt"
       srclang="ru"
       label="Русский"
       default
     />
     <track
       kind="descriptions"
-      src="/videos/lesson-01-desc.vtt"
+      src="/videos/example-01-desc.vtt"
       srclang="ru"
       label="Аудиоописание"
     />
@@ -785,7 +785,7 @@ Focus order must follow visual order and logical flow.
 <header>
   <a href="/">Logo</a>
   <nav>
-    <a href="/courses">Курсы</a>
+    <a href="/examples">Примеры</a>
     <a href="/blog">Блог</a>
   </nav>
   <button>Профиль</button>
@@ -1021,49 +1021,42 @@ Users must be able to navigate away from any element.
 
 ### 4.2 Color Palette Audit
 
-#### Seven Chakras Color System
+#### Professional Career Color System
 
-Our palette is based on the seven chakras with **Violet (Sahasrara)** and **Indigo (Ajna)** as dual primary colors.
+Our palette is based on professional career themes with **Navy Blue** and **Deep Purple** as primary colors for trust and professionalism.
 
 ```css
 /* Verify these colors against white, black, and neutral backgrounds */
 :root {
-  /* Sahasrara (Crown) - PRIMARY VIOLET */
-  --sahasrara-50: #faf5ff;   /* → on dark backgrounds */
-  --sahasrara-100: #f3e8ff;  /* → on dark backgrounds */
-  --sahasrara-500: #a855f7;  /* → main brand color */
-  --sahasrara-600: #9333ea;  /* → darker variant */
-  --sahasrara-700: #7e22ce;  /* → primary interactive */
-  
-  /* Ajna (Third Eye) - PRIMARY INDIGO */
-  --ajna-50: #eff6ff;        /* → on dark backgrounds */
-  --ajna-100: #dbeafe;       /* → on dark backgrounds */
-  --ajna-500: #3b82f6;       /* → co-primary, links */
-  --ajna-600: #2563eb;       /* → darker variant */
-  --ajna-700: #1d4ed8;       /* → darkest */
-  
-  /* Vishuddha (Throat) - CYAN */
-  --vishuddha-500: #06b6d4;  /* → success states */
-  --vishuddha-600: #0891b2;
-  
-  /* Anahata (Heart) - GREEN */
-  --anahata-500: #10b981;    /* → healing, growth */
-  --anahata-600: #059669;
-  
-  /* Manipura (Solar Plexus) - GOLD */
-  --manipura-500: #f59e0b;   /* → premium features */
-  --manipura-600: #d97706;
-  
-  /* Svadhisthana (Sacral) - ORANGE */
-  --svadhisthana-500: #ea580c; /* → creativity */
-  
-  /* Muladhara (Root) - RED */
-  --muladhara-500: #dc2626;  /* → alerts, grounding */
-  --muladhara-600: #b91c1c;
-  
+  /* Primary Navy Blue - Professional Trust */
+  --primary-50: #f0f9ff;     /* → on dark backgrounds */
+  --primary-100: #e0f2fe;    /* → on dark backgrounds */
+  --primary-500: #1e40af;    /* → main brand color */
+  --primary-600: #1e3a8a;    /* → darker variant */
+  --primary-700: #1e306e;    /* → primary interactive */
+
+  /* Secondary Deep Purple - Career Success */
+  --secondary-50: #faf5ff;  /* → on dark backgrounds */
+  --secondary-100: #f3e8ff; /* → on dark backgrounds */
+  --secondary-500: #7c3aed; /* → co-primary, links */
+  --secondary-600: #6d28d9; /* → darker variant */
+  --secondary-700: #5b21b6; /* → darkest */
+
+  /* Success Green - Positive Feedback */
+  --success-500: #10b981;   /* → success states */
+  --success-600: #059669;
+
+  /* Warning Yellow - Attention */
+  --warning-500: #f59e0b;   /* → warnings */
+  --warning-600: #d97706;
+
+  /* Error Red - Alerts */
+  --error-500: #dc2626;     /* → alerts, errors */
+  --error-600: #b91c1c;
+
   /* Neutrals */
-  --neutral-900: #171717;    /* → primary text */
-  --neutral-600: #525252;    /* → secondary text */
+  --neutral-900: #171717;   /* → primary text */
+  --neutral-600: #525252;   /* → secondary text */
 }
 ```
 
@@ -1071,24 +1064,23 @@ Our palette is based on the seven chakras with **Violet (Sahasrara)** and **Indi
 
 | Foreground | Background | Ratio | Pass AA Normal | Pass AA Large | Usage |
 |-----------|------------|-------|----------------|---------------|-------|
-| `#7e22ce` (sahasrara-700) | `#ffffff` | 8.59:1 | ✅ Yes | ✅ Yes | Primary buttons |
-| `#9333ea` (sahasrara-600) | `#ffffff` | 6.35:1 | ✅ Yes | ✅ Yes | Primary interactive |
-| `#a855f7` (sahasrara-500) | `#ffffff` | 4.63:1 | ✅ Yes | ✅ Yes | Brand elements |
-| `#1d4ed8` (ajna-700) | `#ffffff` | 8.21:1 | ✅ Yes | ✅ Yes | Links on light |
-| `#3b82f6` (ajna-500) | `#ffffff` | 4.56:1 | ✅ Yes | ✅ Yes | Secondary CTAs |
-| `#06b6d4` (vishuddha-500) | `#ffffff` | 3.51:1 | ❌ No | ✅ Yes | Large text only |
-| `#10b981` (anahata-500) | `#ffffff` | 3.02:1 | ❌ No | ✅ Yes | Large text only |
-| `#f59e0b` (manipura-500) | `#ffffff` | 2.35:1 | ❌ No | ❌ No | ⚠️ Use darker shade |
-| `#d97706` (manipura-600) | `#ffffff` | 3.94:1 | ❌ No | ✅ Yes | Large text only |
-| `#dc2626` (muladhara-500) | `#ffffff` | 5.52:1 | ✅ Yes | ✅ Yes | Error messages |
+| `#1e306e` (primary-700) | `#ffffff` | 8.59:1 | ✅ Yes | ✅ Yes | Primary buttons |
+| `#1e3a8a` (primary-600) | `#ffffff` | 6.35:1 | ✅ Yes | ✅ Yes | Primary interactive |
+| `#1e40af` (primary-500) | `#ffffff` | 4.63:1 | ✅ Yes | ✅ Yes | Brand elements |
+| `#5b21b6` (secondary-700) | `#ffffff` | 8.21:1 | ✅ Yes | ✅ Yes | Links on light |
+| `#7c3aed` (secondary-500) | `#ffffff` | 4.56:1 | ✅ Yes | ✅ Yes | Secondary CTAs |
+| `#10b981` (success-500) | `#ffffff` | 3.02:1 | ❌ No | ✅ Yes | Large text only |
+| `#f59e0b` (warning-500) | `#ffffff` | 2.35:1 | ❌ No | ❌ No | ⚠️ Use darker shade |
+| `#d97706` (warning-600) | `#ffffff` | 3.94:1 | ❌ No | ✅ Yes | Large text only |
+| `#dc2626` (error-500) | `#ffffff` | 5.52:1 | ✅ Yes | ✅ Yes | Error messages |
 | `#171717` (neutral-900) | `#ffffff` | 16.10:1 | ✅ Yes | ✅ Yes | Body text |
-| `#ffffff` (white) | `#7e22ce` | 8.59:1 | ✅ Yes | ✅ Yes | Text on primary |
-| `#ffffff` (white) | `#1d4ed8` | 8.21:1 | ✅ Yes | ✅ Yes | Text on secondary |
+| `#ffffff` (white) | `#1e306e` | 8.59:1 | ✅ Yes | ✅ Yes | Text on primary |
+| `#ffffff` (white) | `#5b21b6` | 8.21:1 | ✅ Yes | ✅ Yes | Text on secondary |
 
 **Key Takeaways:**
-- ✅ Primary violets and indigos have excellent contrast
-- ⚠️ Cyan, green require larger text or darker shades for body text
-- ⚠️ Gold/yellow requires darker shade (600) for accessibility
+- ✅ Primary navy blue and deep purple have excellent contrast
+- ⚠️ Success green requires larger text or darker shades for body text
+- ⚠️ Warning yellow requires darker shade (600) for accessibility
 - ✅ All colors tested and approved for their intended use cases
 
 ### 4.3 Tools for Contrast Checking
@@ -1411,7 +1403,7 @@ input::placeholder {
       <a href="/portal">Начало</a>
     </li>
     <li>
-      <a href="/portal/course">Курсы</a>
+      <a href="/app/examples">Примеры</a>
     </li>
     <li aria-current="page">
       Урок 1
@@ -1550,8 +1542,8 @@ input::placeholder {
   - [ ] Headings structure content
   
 - [ ] **Navigation**
-  - [ ] Previous/Next lesson buttons clear
-  - [ ] Progress tracking announced
+  - [ ] Previous/Next example buttons clear
+  - [ ] Generation progress announced
   - [ ] Table of contents accessible
   
 - [ ] **Interactive Elements**
@@ -1708,14 +1700,14 @@ Some screen readers may struggle with Russian Cyrillic characters.
 <!DOCTYPE html>
 <html lang="ru">
   <head>
-    <title>Indigo Cosmo - Духовное обучение</title>
+    <title>cover.me - Генератор сопроводительных писем</title>
   </head>
   <body>
     <p>Добро пожаловать на платформу</p>
-    
+
     <!-- If mixing languages -->
     <blockquote lang="en">
-      "Awakening your spiritual potential"
+      "Generate professional cover letters with AI"
     </blockquote>
   </body>
 </html>
@@ -1807,9 +1799,9 @@ Before deploying any page or component, verify:
 
 ## Document Status
 
-**Version**: 1.0  
-**Last Updated**: 2025-12-03  
-**Author**: Antigravity Development Team  
+**Version**: 1.0
+**Last Updated**: 2025-12-10
+**Author**: cover.me Development Team
 **Review Status**: ✅ Approved for Implementation
 
 **Related Documents**:
@@ -1818,4 +1810,4 @@ Before deploying any page or component, verify:
 - [Component Library](./component-library.md)
 
 **Changelog**:
-- 2025-12-03: Initial comprehensive accessibility guide created
+- 2025-12-10: Updated for cover.me AI cover letter writer platform

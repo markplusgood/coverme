@@ -51,7 +51,13 @@ Definitive rules for i18n support (fields, flows, QA), and copy/language QA: see
 ## TODO: Domain Decisions Requiring Product Owner Input
 
 ### AI/ML Infrastructure
-- **TODO-PRODUCT**: Select AI model/provider for cover letter generation (OpenAI GPT-4, Claude, custom fine-tuned model, etc.). Document API keys, rate limits, cost per generation, and fallback strategy.
+- **AI Provider**: OpenRouter (https://openrouter.ai)
+- **Primary Model**: Google's Gemini 2.0 Flash (model ID: `google/gemini-2.0-flash-exp:free`)
+- **API Endpoint**: https://openrouter.ai/api/v1/chat/completions
+- **Authentication**: API key required (to be stored in environment variables)
+- **Rate Limits**: Follow OpenRouter's rate limits (documented at https://openrouter.ai/docs#rate-limits)
+- **Cost Structure**: Free tier available, with paid options for higher volume
+- **Fallback Strategy**: Implement retry logic with exponential backoff for rate limit errors
 - **Prompt Strategy**: The core prompt structure and strategy for cover letter generation is defined in [prompt.md](./prompt.md). This includes instructions for keyword matching, tone of voice, and output formatting.
 
 ### Export Filename Localization

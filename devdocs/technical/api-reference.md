@@ -83,7 +83,7 @@ All endpoints (except a public health check or marketing routes) require Supabas
 - **POST /api/jobs**: Accept pasted job description or (optionally) a URL. Parse, extract title, company, responsibilities, role, stack. Validate min length/structure.
 
 ### 3. Cover Letter Generation
-- **POST /api/letters**: Accepts { job_id, resume_id, tone, language, user_id }. Generates letter (AI), streams preview, allows inline editing, saves version. Uses D1 cache before invoking model.
+- **POST /api/letters**: Accepts { job_id, resume_id, tone, language, user_id }. Generates letter using OpenRouter AI API with Google's Gemini 2.0 Flash model, streams preview, allows inline editing, saves version. Uses D1 cache before invoking model.
 - **GET /api/letters/:id**: Retrieve letter details for preview/export/history.
 - **PUT /api/letters/:id**: Update/accept/reject edits, mark as reviewed/A/B variant.
 
@@ -175,5 +175,5 @@ All errors follow a standard JSON format (see AGENTS.md):
 
 ---
 
-## TODO-REWRITE
-All endpoints, schemas, and references for "lesson/progress/assignment/course" must be replaced with job/resume/letter terms. Any remaining education-specific sample or flow must be removed or rewritten for productivity/cover letter context.
+## ✅ COMPLETED
+All endpoints, schemas, and references have been successfully refactored from "lesson/progress/assignment/course" to job/resume/letter terms. The documentation now fully reflects the career/cover letter context.

@@ -1,8 +1,8 @@
-# indigocosmo.club - Supabase Setup Guide
+# cover.me - Supabase Setup Guide
 
 ## Overview
 
-This guide provides step-by-step instructions for setting up Supabase for the indigocosmo.club spiritual course platform. Supabase serves as the backend for authentication, database, and real-time features.
+This guide provides step-by-step instructions for setting up Supabase for the cover.me AI cover letter writer platform. Supabase serves as the backend for authentication, database, and real-time features.
 
 **Estimated Setup Time**: 45-60 minutes
 **Prerequisites**: Cloudflare account (for R2 integration)
@@ -36,7 +36,7 @@ This guide provides step-by-step instructions for setting up Supabase for the in
 
 1. Click "New project" in your dashboard
 2. Fill in project details:
-   - **Name**: `indigocosmo` (or `indigocosmo-prod` for production)
+   - **Name**: `coverme` (or `coverme-prod` for production)
    - **Database Password**: Generate a strong password (save this securely)
    - **Region**: Choose the region closest to your users (e.g., EU West for European users)
 3. Click "Create new project"
@@ -105,8 +105,8 @@ This guide provides step-by-step instructions for setting up Supabase for the in
 1. Open Telegram and search for **@BotFather**
 2. Send `/newbot` command to create a new bot
 3. Follow the prompts:
-   - **Bot name**: `indigocosmo.club Bot`
-   - **Bot username**: Choose a unique username (e.g., `indigocosmo_bot`)
+   - **Bot name**: `cover.me Bot`
+   - **Bot username**: Choose a unique username (e.g., `coverme_bot`)
 4. Copy the **Bot Token** provided by BotFather
 
 #### Configure in Supabase
@@ -141,7 +141,7 @@ This guide provides step-by-step instructions for setting up Supabase for the in
 1. Select **Confirm signup** template
 2. Customize the email content:
 
-**Subject**: `Добро пожаловать в indigocosmo.club! Подтвердите ваш email`
+**Subject**: `Добро пожаловать в cover.me! Подтвердите ваш email`
 
 **Message** (HTML):
 ```html
@@ -153,11 +153,11 @@ This guide provides step-by-step instructions for setting up Supabase for the in
 </head>
 <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
   <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
-    <h1 style="color: #a855f7;">🌟 Добро пожаловать в indigocosmo.club!</h1>
+    <h1 style="color: #1e40af;">🌟 Добро пожаловать в cover.me!</h1>
 
-    <p>Спасибо за регистрацию на платформе духовного развития!</p>
+    <p>Спасибо за регистрацию на платформе для создания профессиональных сопроводительных писем!</p>
 
-    <p>Чтобы завершить регистрацию и начать свое путешествие к пробуждению третьего глаза, подтвердите ваш email:</p>
+    <p>Чтобы завершить регистрацию и начать создавать идеальные сопроводительные письма с помощью ИИ, подтвердите ваш email:</p>
 
     <div style="text-align: center; margin: 30px 0;">
       <a href="{{ .ConfirmationURL }}"
@@ -168,10 +168,10 @@ This guide provides step-by-step instructions for setting up Supabase for the in
 
     <p><strong>Что вас ждет:</strong></p>
     <ul>
-      <li>Курс по развитию ясновидения</li>
-      <li>Практики астрального путешествия</li>
-      <li>Упражнения по открытию третьего глаза</li>
-      <li>Сообщество единомышленников</li>
+      <li>Создание профессиональных сопроводительных писем с помощью ИИ</li>
+      <li>Оптимизация резюме для поиска работы</li>
+      <li>Карьерные советы и рекомендации</li>
+      <li>Экспорт в PDF и DOCX форматы</li>
     </ul>
 
     <p style="color: #666; font-size: 14px;">
@@ -182,7 +182,7 @@ This guide provides step-by-step instructions for setting up Supabase for the in
     <hr style="border: none; border-top: 1px solid #eee; margin: 30px 0;">
 
     <p style="color: #666; font-size: 12px;">
-      Если вы не регистрировались на indigocosmo.club, просто игнорируйте это письмо.
+      Если вы не регистрировались на cover.me, просто игнорируйте это письмо.
     </p>
   </div>
 </body>
@@ -193,7 +193,7 @@ This guide provides step-by-step instructions for setting up Supabase for the in
 
 1. Select **Reset password** template
 
-**Subject**: `Восстановление пароля - indigocosmo.club`
+**Subject**: `Восстановление пароля - cover.me`
 
 **Message** (HTML):
 ```html
@@ -207,7 +207,7 @@ This guide provides step-by-step instructions for setting up Supabase for the in
   <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
     <h1 style="color: #a855f7;">🔐 Восстановление пароля</h1>
 
-    <p>Мы получили запрос на восстановление пароля для вашей учетной записи на indigocosmo.club.</p>
+    <p>Мы получили запрос на восстановление пароля для вашей учетной записи на cover.me.</p>
 
     <p>Чтобы установить новый пароль, нажмите на кнопку ниже:</p>
 
@@ -241,7 +241,7 @@ This guide provides step-by-step instructions for setting up Supabase for the in
 
 1. Select **Change email address** template
 
-**Subject**: `Подтверждение изменения email - indigocosmo.club`
+**Subject**: `Подтверждение изменения email - cover.me`
 
 **Message** (HTML):
 ```html
@@ -255,7 +255,7 @@ This guide provides step-by-step instructions for setting up Supabase for the in
   <div style="max-width: 600px; margin: 0 auto; padding: 20px;">
     <h1 style="color: #a855f7;">📧 Подтверждение изменения email</h1>
 
-    <p>Мы получили запрос на изменение email адреса для вашей учетной записи на indigocosmo.club.</p>
+    <p>Мы получили запрос на изменение email адреса для вашей учетной записи на cover.me.</p>
 
     <p>Ваш новый email адрес: <strong>{{ .NewEmail }}</strong></p>
 
@@ -314,49 +314,48 @@ CREATE TABLE public.profiles (
 );
 ```
 
-#### Create Course Progress Table
+#### Create Cover Letter Generation Table
 ```sql
--- Course progress tracking
-CREATE TABLE public.course_progress (
+-- Cover letter generation tracking
+CREATE TABLE public.letters (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES auth.users NOT NULL,
-  course_id TEXT NOT NULL, -- e.g., 'course-1', 'course-2'
-  lesson_slug TEXT NOT NULL,
-  completed BOOLEAN DEFAULT FALSE,
+  job_id TEXT NOT NULL, -- e.g., 'job-1', 'job-2'
+  resume_id TEXT NOT NULL,
+  generated BOOLEAN DEFAULT FALSE,
   completed_at TIMESTAMPTZ,
   notes TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  UNIQUE(user_id, course_id, lesson_slug)
+  UNIQUE(user_id, job_id, resume_id)
 );
 ```
 
 #### Create Assignment Submissions Table
 ```sql
--- Assignment submissions
-CREATE TABLE public.assignment_submissions (
+-- Letter exports
+CREATE TABLE public.letter_exports (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES auth.users NOT NULL,
-  course_id TEXT NOT NULL, -- e.g., 'course-1', 'course-2'
-  assignment_slug TEXT NOT NULL,
+  job_id TEXT NOT NULL, -- e.g., 'job-1', 'job-2'
+  letter_id TEXT NOT NULL,
   content TEXT NOT NULL,
-  submitted_at TIMESTAMPTZ DEFAULT NOW(),
-  status TEXT DEFAULT 'submitted', -- submitted, reviewed, completed
-  feedback TEXT,
-  score INTEGER,
-  UNIQUE(user_id, course_id, assignment_slug)
+  exported_at TIMESTAMPTZ DEFAULT NOW(),
+  format TEXT, -- 'pdf', 'docx', 'text'
+  status TEXT DEFAULT 'completed',
+  UNIQUE(user_id, job_id, letter_id)
 );
 ```
 
 #### Create User Schedules Table
 ```sql
--- Assignment schedules (for learners)
-CREATE TABLE public.user_schedules (
+-- User generation history
+CREATE TABLE public.generation_history (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   user_id UUID REFERENCES auth.users NOT NULL,
-  course_id TEXT NOT NULL, -- e.g., 'course-1', 'course-2'
-  assignment_slug TEXT NOT NULL,
-  due_date DATE NOT NULL,
-  reminder_sent BOOLEAN DEFAULT FALSE,
+  job_id TEXT NOT NULL, -- e.g., 'job-1', 'job-2'
+  letter_id TEXT NOT NULL,
+  generated_at TIMESTAMPTZ DEFAULT NOW(),
+  tone TEXT, -- 'concise', 'enthusiastic', 'formal'
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 ```
@@ -410,9 +409,9 @@ Run these commands to enable RLS on all tables:
 ```sql
 -- Enable Row Level Security
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.course_progress ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.assignment_submissions ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.user_schedules ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.letters ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.letter_exports ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.generation_history ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.library_downloads ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.user_consents ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.schema_migrations ENABLE ROW LEVEL SECURITY;
@@ -425,20 +424,20 @@ Run these commands to create performance indexes:
 ```sql
 -- Profiles (primary key index created automatically)
 
--- Course Progress
-CREATE INDEX idx_course_progress_user_id ON public.course_progress(user_id);
-CREATE INDEX idx_course_progress_course ON public.course_progress(course_id);
-CREATE INDEX idx_course_progress_lesson ON public.course_progress(course_id, lesson_slug);
+-- Letter Generation
+CREATE INDEX idx_letters_user_id ON public.letters(user_id);
+CREATE INDEX idx_letters_job_id ON public.letters(job_id);
+CREATE INDEX idx_letters_resume ON public.letters(resume_id);
 
--- Assignment Submissions
-CREATE INDEX idx_assignment_submissions_user_id ON public.assignment_submissions(user_id);
-CREATE INDEX idx_assignment_submissions_course ON public.assignment_submissions(course_id);
-CREATE INDEX idx_assignment_submissions_assignment ON public.assignment_submissions(course_id, assignment_slug);
+-- Letter Exports
+CREATE INDEX idx_letter_exports_user_id ON public.letter_exports(user_id);
+CREATE INDEX idx_letter_exports_job_id ON public.letter_exports(job_id);
+CREATE INDEX idx_letter_exports_letter ON public.letter_exports(letter_id);
 
--- User Schedules
-CREATE INDEX idx_user_schedules_user_id ON public.user_schedules(user_id);
-CREATE INDEX idx_user_schedules_course ON public.user_schedules(course_id);
-CREATE INDEX idx_user_schedules_due_date ON public.user_schedules(due_date);
+-- Generation History
+CREATE INDEX idx_generation_history_user_id ON public.generation_history(user_id);
+CREATE INDEX idx_generation_history_job_id ON public.generation_history(job_id);
+CREATE INDEX idx_generation_history_generated_at ON public.generation_history(generated_at);
 
 -- Library Downloads
 CREATE INDEX idx_library_downloads_user_id ON public.library_downloads(user_id);
@@ -471,24 +470,24 @@ CREATE POLICY "Users can update own profile" ON public.profiles
   FOR UPDATE USING (auth.uid() = id);
 ```
 
-#### Course Progress Policies
+#### Cover Letter Generation Policies
 ```sql
--- Course progress policies
-CREATE POLICY "Users can view own progress" ON public.course_progress
+-- Letter generation policies
+CREATE POLICY "Users can view own letters" ON public.letters
   FOR ALL USING (auth.uid() = user_id);
 ```
 
 #### Assignment Submissions Policies
 ```sql
--- Assignment submissions policies
-CREATE POLICY "Users can manage own submissions" ON public.assignment_submissions
+-- Letter exports policies
+CREATE POLICY "Users can manage own exports" ON public.letter_exports
   FOR ALL USING (auth.uid() = user_id);
 ```
 
 #### User Schedules Policies
 ```sql
--- User schedules policies
-CREATE POLICY "Users can manage own schedules" ON public.user_schedules
+-- Generation history policies
+CREATE POLICY "Users can view own generation history" ON public.generation_history
   FOR ALL USING (auth.uid() = user_id);
 ```
 
@@ -531,7 +530,7 @@ CREATE POLICY "Anyone can view migrations" ON public.schema_migrations
 
 1. Go to [Cloudflare Dashboard](https://dash.cloudflare.com/)
 2. Navigate to **R2** → **Create bucket**
-3. Name your bucket: `indigocosmo-avatars` (or `indigocosmo-prod-avatars` for production)
+3. Name your bucket: `coverme-resumes` (or `coverme-prod-resumes` for production)
 4. Choose your region (same as your Supabase region if possible)
 
 ### Step 6.2: Get R2 Credentials
@@ -556,7 +555,7 @@ CREATE POLICY "Anyone can view migrations" ON public.schema_migrations
   {
     "AllowedOrigins": [
       "http://localhost:5173",
-      "https://indigocosmo.club",
+      "https://cover.me",
       "https://your-production-domain.com"
     ],
     "AllowedMethods": ["GET", "PUT", "POST", "DELETE"],
@@ -570,7 +569,7 @@ CREATE POLICY "Anyone can view migrations" ON public.schema_migrations
 
 For serving images publicly:
 
-1. Create another bucket: `indigocosmo-public`
+1. Create another bucket: `coverme-public`
 2. In bucket settings, enable **Public access**
 3. Note the public URL format: `https://[account-id].r2.cloudflarestorage.com/[bucket-name]/`
 
@@ -592,12 +591,12 @@ SUPABASE_SERVICE_ROLE_KEY=your-service-role-key-here
 R2_ACCOUNT_ID=your-account-id
 R2_ACCESS_KEY_ID=your-access-key-id
 R2_SECRET_ACCESS_KEY=your-secret-access-key
-R2_BUCKET_NAME=indigocosmo-avatars
-PUBLIC_R2_PUBLIC_URL=https://your-account-id.r2.cloudflarestorage.com/indigocosmo-public
+R2_BUCKET_NAME=coverme-resumes
+PUBLIC_R2_PUBLIC_URL=https://your-account-id.r2.cloudflarestorage.com/coverme-public
 
 # Site Configuration
 PUBLIC_SITE_URL=http://localhost:5173
-PUBLIC_SITE_NAME=indigocosmo.club
+PUBLIC_SITE_NAME=cover.me
 
 # Optional: Analytics (for development)
 VITE_ENABLE_ANALYTICS=false
@@ -738,7 +737,7 @@ After completing this setup:
 
 1. **Implement Authentication**: Set up auth pages and components in your SvelteKit app
 2. **Create Database Queries**: Implement server-side functions for database operations
-3. **Build User Interface**: Create profile management and course interfaces
+3. **Build User Interface**: Create profile management and cover letter generation interfaces
 4. **Test End-to-End**: Perform comprehensive testing of all features
 5. **Deploy**: Set up production environment and deploy
 

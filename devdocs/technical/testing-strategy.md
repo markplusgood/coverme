@@ -1,8 +1,8 @@
-# Testing Strategy - indigocosmo.club
+# Testing Strategy - cover.me
 
 ## Overview
 
-This document outlines the comprehensive testing strategy for the indigocosmo.club spiritual learning platform. Our testing approach ensures code quality, accessibility compliance, cross-browser compatibility, and optimal performance while supporting rapid development cycles.
+This document outlines the comprehensive testing strategy for the cover.me AI cover letter writer platform. Our testing approach ensures code quality, accessibility compliance, cross-browser compatibility, and optimal performance while supporting rapid development cycles.
 
 ### Testing Philosophy
 
@@ -543,13 +543,13 @@ import { test, expect } from '@playwright/test';
 test.describe('Landing Page', () => {
   test('should load successfully with all sections', async ({ page }) => {
     await page.goto('/');
-    
+
     // Check hero section
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-    
+
     // Check features section
     await expect(page.getByText(/Особенности/i)).toBeVisible();
-    
+
     // Check CTA buttons
     const ctaButton = page.getByRole('button', { name: /начать/i }).first();
     await expect(ctaButton).toBeVisible();
@@ -558,38 +558,38 @@ test.describe('Landing Page', () => {
 
   test('should have correct Lighthouse scores', async ({ page }) => {
     await page.goto('/');
-    
+
     // Note: Use Lighthouse CI in actual implementation
     const performanceScore = await page.evaluate(() => {
-      return window.performance.timing.loadEventEnd - 
+      return window.performance.timing.loadEventEnd -
              window.performance.timing.navigationStart;
     });
-    
+
     expect(performanceScore).toBeLessThan(2000); // < 2s load time
   });
 
   test('should be responsive on mobile', async ({ page }) => {
     await page.setViewportSize({ width: 375, height: 667 });
     await page.goto('/');
-    
+
     // Check mobile menu
     const menuButton = page.getByRole('button', { name: /меню/i });
     await expect(menuButton).toBeVisible();
-    
+
     // Check content is not overflowing
     const body = await page.locator('body');
     const box = await body.boundingBox();
     expect(box?.width).toBeLessThanOrEqual(375);
   });
 
-  test('should navigate to checkout on CTA click', async ({ page }) => {
+  test('should navigate to signup on CTA click', async ({ page }) => {
     await page.goto('/');
-    
-    const ctaButton = page.getByRole('button', { name: /купить/i }).first();
+
+    const ctaButton = page.getByRole('button', { name: /начать/i }).first();
     await ctaButton.click();
-    
-    // Should redirect to checkout or payment page
-    await expect(page).toHaveURL(/checkout|payment/);
+
+    // Should redirect to signup page
+    await expect(page).toHaveURL(/auth\/signup/);
   });
 });
 ```
@@ -601,17 +601,17 @@ test.describe('Landing Page', () => {
 import { test, expect } from '@playwright/test';
 
 test.describe('Checkout Flow', () => {
-  test('should initiate Payoneer checkout', async ({ page }) => {
+  test('should initiate checkout', async ({ page }) => {
     await page.goto('/');
-    
-    // Click buy button
-    await page.getByRole('button', { name: /купить курс/i }).first().click();
-    
-    // Should show Payoneer iframe or redirect
-    await page.waitForURL(/payoneer|checkout/);
-    
-    // Verify payment page loaded
-    await expect(page.getByText(/payment|оплата/i)).toBeVisible();
+
+    // Click upgrade button
+    await page.getByRole('button', { name: /улучшить/i }).first().click();
+
+    // Should show checkout page
+    await page.waitForURL(/checkout/);
+
+    // Verify checkout page loaded
+    await expect(page.getByText(/оформление заказа/i)).toBeVisible();
   });
 
   test('should handle successful payment', async ({ page, context }) => {
@@ -619,28 +619,28 @@ test.describe('Checkout Flow', () => {
     await context.route('**/api/payment/callback', route => {
       route.fulfill({
         status: 200,
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           status: 'success',
-          access_token: 'test-token-123'
+          subscription_active: true
         })
       });
     });
 
     await page.goto('/checkout/success?payment_id=test123');
-    
+
     // Should show success message
     await expect(page.getByText(/успешно|спасибо/i)).toBeVisible();
-    
-    // Should receive access link
-    await expect(page.getByText(/ссылка для доступа/i)).toBeVisible();
+
+    // Should show premium features unlocked
+    await expect(page.getByText(/премиум функции/i)).toBeVisible();
   });
 
   test('should handle failed payment', async ({ page }) => {
     await page.goto('/checkout/failed');
-    
+
     // Should show error message
     await expect(page.getByText(/ошибка|не удалось/i)).toBeVisible();
-    
+
     // Should offer retry option
     const retryButton = page.getByRole('button', { name: /попробовать снова/i });
     await expect(retryButton).toBeVisible();
@@ -657,124 +657,121 @@ import { test, expect } from '@playwright/test';
 test.describe('Authentication', () => {
   test('should sign up with email', async ({ page }) => {
     await page.goto('/auth/signup');
-    
+
     // Fill signup form
     await page.getByLabel(/email/i).fill('newuser@example.com');
     await page.getByLabel(/пароль/i).fill('StrongPass123!');
     await page.getByLabel(/подтвердите пароль/i).fill('StrongPass123!');
-    
+
     // Accept terms
     await page.getByLabel(/принимаю условия/i).check();
-    
+
     // Submit
     await page.getByRole('button', { name: /зарегистрироваться/i }).click();
-    
+
     // Should show verification prompt
     await expect(page.getByText(/проверьте email/i)).toBeVisible();
   });
 
   test('should login with valid credentials', async ({ page }) => {
     await page.goto('/auth/login');
-    
+
     await page.getByLabel(/email/i).fill('user@example.com');
     await page.getByLabel(/пароль/i).fill('TestPass123!');
     await page.getByRole('button', { name: /войти/i }).click();
-    
-    // Should redirect to portal
-    await expect(page).toHaveURL(/portal/);
+
+    // Should redirect to app
+    await expect(page).toHaveURL(/app/);
   });
 
   test('should login with Google OAuth', async ({ page, context }) => {
     await page.goto('/auth/login');
-    
+
     // Click Google login button
     const googleButton = page.getByRole('button', { name: /Google/i });
-    
+
     // Handle OAuth popup
     const [popup] = await Promise.all([
       context.waitForEvent('page'),
       googleButton.click()
     ]);
-    
+
     // Should open Google OAuth page
     await expect(popup).toHaveURL(/accounts.google.com/);
   });
 
   test('should handle password reset', async ({ page }) => {
     await page.goto('/auth/reset-password');
-    
+
     await page.getByLabel(/email/i).fill('user@example.com');
     await page.getByRole('button', { name: /сбросить/i }).click();
-    
+
     // Should show confirmation
     await expect(page.getByText(/письмо отправлено/i)).toBeVisible();
   });
 });
 ```
 
-#### 4. Course Access Flow (Segment 2)
+#### 4. Letter Generation Flow (Segment 2)
 
 ```typescript
-// tests/e2e/course.spec.ts
+// tests/e2e/generation.spec.ts
 import { test, expect } from '@playwright/test';
 
-test.describe('Course Access', () => {
+test.describe('Letter Generation', () => {
   test.beforeEach(async ({ page }) => {
     // Login before each test
     await page.goto('/auth/login');
     await page.getByLabel(/email/i).fill('testuser@example.com');
     await page.getByLabel(/пароль/i).fill('TestPass123!');
     await page.getByRole('button', { name: /войти/i }).click();
-    await page.waitForURL(/portal/);
+    await page.waitForURL(/app/);
   });
 
-  test('should display course lessons', async ({ page }) => {
-    await page.goto('/portal/course/lessons');
-    
-    // Should show course list
-    await expect(page.getByText(/Курс/i)).toBeVisible();
-    
-    // Should show first lesson
-    const firstLesson = page.getByRole('link', { name: /Урок 1/i });
-    await expect(firstLesson).toBeVisible();
+  test('should display cover letter examples', async ({ page }) => {
+    await page.goto('/app/examples');
+
+    // Should show examples list
+    await expect(page.getByText(/Примеры/i)).toBeVisible();
+
+    // Should show first example
+    const firstExample = page.getByRole('link', { name: /Пример 1/i });
+    await expect(firstExample).toBeVisible();
   });
 
-  test('should view lesson and mark complete', async ({ page }) => {
-    await page.goto('/portal/course/lessons/course-01/lesson-01');
-    
-    // Lesson content should be visible
+  test('should view example and generate letter', async ({ page }) => {
+    await page.goto('/app/examples/example-01');
+
+    // Example content should be visible
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-    
-    // Mark as complete
-    const completeButton = page.getByRole('button', { name: /завершить урок/i });
-    await completeButton.click();
-    
-    // Should update progress
-    await expect(page.getByText(/урок завершён/i)).toBeVisible();
+
+    // Generate letter
+    const generateButton = page.getByRole('button', { name: /сгенерировать/i });
+    await generateButton.click();
+
+    // Should show generation result
+    await expect(page.getByText(/письмо сгенерировано/i)).toBeVisible();
   });
 
-  test('should submit assignment', async ({ page }) => {
-    await page.goto('/portal/course/assignments/assignment-01');
-    
-    // Fill assignment form
-    await page.getByRole('textbox').fill('Это моё задание...');
-    
+  test('should export letter', async ({ page }) => {
+    await page.goto('/app/letters/letter-01/export');
+
+    // Choose export format
+    await page.getByLabel(/PDF/i).check();
+
     // Submit
-    await page.getByRole('button', { name: /отправить/i }).click();
-    
+    await page.getByRole('button', { name: /экспортировать/i }).click();
+
     // Should show confirmation
-    await expect(page.getByText(/задание отправлено/i)).toBeVisible();
+    await expect(page.getByText(/экспорт завершён/i)).toBeVisible();
   });
 
-  test('should track progress', async ({ page }) => {
-    await page.goto('/portal/course');
-    
-    // Should show progress bar
-    const progressBar = page.locator('[role="progressbar"]');
-    await expect(progressBar).toBeVisible();
-    
-    // Should show percentage
-    await expect(page.getByText(/%/)).toBeVisible();
+  test('should track generation history', async ({ page }) => {
+    await page.goto('/app/history');
+
+    // Should show history list
+    const historyItems = page.locator('.history-item');
+    await expect(historyItems).toHaveCountGreaterThan(0);
   });
 });
 ```
@@ -792,12 +789,12 @@ test.describe('Visual Regression', () => {
     await expect(hero).toHaveScreenshot('hero-section.png');
   });
 
-  test('portal dashboard', async ({ page }) => {
+  test('app dashboard', async ({ page }) => {
     // Login first
     await page.goto('/auth/login');
     // ... login steps
-    await page.goto('/portal');
-    await expect(page).toHaveScreenshot('portal-dashboard.png');
+    await page.goto('/app');
+    await expect(page).toHaveScreenshot('app-dashboard.png');
   });
 });
 ```
@@ -870,17 +867,17 @@ import AxeBuilder from '@axe-core/playwright';
 test.describe('Accessibility', () => {
   test('landing page should not have accessibility violations', async ({ page }) => {
     await page.goto('/');
-    
+
     const accessibilityScanResults = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])
       .analyze();
-    
+
     expect(accessibilityScanResults.violations).toEqual([]);
   });
 
-  test('portal should be keyboard navigable', async ({ page }) => {
-    await page.goto('/portal');
-    
+  test('app should be keyboard navigable', async ({ page }) => {
+    await page.goto('/app');
+
     // Tab through interactive elements
     await page.keyboard.press('Tab');
     const firstFocusable = await page.evaluate(() => document.activeElement?.tagName);
@@ -889,11 +886,11 @@ test.describe('Accessibility', () => {
 
   test('forms should have proper labels', async ({ page }) => {
     await page.goto('/auth/login');
-    
+
     const accessibilityScanResults = await new AxeBuilder({ page })
       .withTags(['wcag2a'])
       .analyze();
-    
+
     const labelViolations = accessibilityScanResults.violations.filter(
       v => v.id === 'label'
     );
@@ -995,9 +992,9 @@ test.describe('Accessibility', () => {
     "http://localhost:5173/",
     "http://localhost:5173/auth/login",
     "http://localhost:5173/auth/signup",
-    "http://localhost:5173/portal",
-    "http://localhost:5173/portal/blog",
-    "http://localhost:5173/portal/course"
+    "http://localhost:5173/app",
+    "http://localhost:5173/blog",
+    "http://localhost:5173/examples"
   ]
 }
 ```
@@ -1195,8 +1192,8 @@ For each major release, manually test on:
 1. Landing page responsiveness
 2. Form submissions
 3. Authentication flows
-4. Course content rendering
-5. Video playback
+4. Letter generation interface
+5. Export functionality
 6. File downloads
 
 ---
@@ -1234,8 +1231,8 @@ module.exports = {
       startServerCommand: 'bun run preview',
       url: [
         'http://localhost:4173/',
-        'http://localhost:4173/portal',
-        'http://localhost:4173/portal/course/lessons/course-01/lesson-01'
+        'http://localhost:4173/app',
+        'http://localhost:4173/examples/example-01'
       ],
       numberOfRuns: 5 // Average of 5 runs
     },
@@ -1329,11 +1326,11 @@ import { describe, it, expect } from 'vitest';
 import { supabase } from '$lib/server/supabase';
 
 describe('Database Performance', () => {
-  it('course progress query should execute quickly', async () => {
+  it('letter generation query should execute quickly', async () => {
     const startTime = performance.now();
     
     const { data } = await supabase
-      .from('course_progress')
+      .from('letters')
       .select('*')
       .eq('user_id', 'test-user-id');
     
@@ -1345,7 +1342,7 @@ describe('Database Performance', () => {
   it('should use indexes efficiently', async () => {
     // Verify indexes exist
     const { data: indexes } = await supabase
-      .rpc('get_table_indexes', { table_name: 'course_progress' });
+      .rpc('get_table_indexes', { table_name: 'letters' });
     
     expect(indexes).toContainEqual(
       expect.objectContaining({ column_name: 'user_id' })
@@ -1425,10 +1422,10 @@ scenarios:
       - get:
           url: "/portal"
       - get:
-          url: "/portal/course/lessons"
+          url: "/app/examples"
       - think: 10
       - get:
-          url: "/portal/course/lessons/course-01/lesson-01"
+          url: "/app/examples/example-01"
 ```
 
 ```bash
@@ -1484,7 +1481,7 @@ export function initPerformanceMonitoring() {
 ### Recommended Structure
 
 ```
-indigocosmo/
+coverme/
 ├── src/
 │   ├── lib/
 │   │   ├── components/
@@ -1498,7 +1495,7 @@ indigocosmo/
 │   │   │   │   ├── Hero.test.ts
 │   │   │   │   ├── Features.svelte
 │   │   │   │   └── Features.test.ts
-│   │   │   └── portal/
+│   │   │   └── app/
 │   │   │       ├── Sidebar.svelte
 │   │   │       └── Sidebar.test.ts
 │   │   ├── utils/
@@ -1512,13 +1509,13 @@ indigocosmo/
 │   │           └── queries.test.ts
 │   └── routes/
 │       └── api/
-│           └── progress/
+│           └── generation/
 │               └── +server.test.ts          # API route tests
 ├── tests/
 │   ├── setup.ts                             # Global test setup
 │   ├── fixtures/                            # Test data
 │   │   ├── blog-posts.json
-│   │   ├── lessons.json
+│   │   ├── examples.json
 │   │   └── users.json
 │   ├── mocks/                               # Shared mocks
 │   │   ├── supabase.ts
@@ -1532,7 +1529,7 @@ indigocosmo/
 │   │   ├── landing.spec.ts
 │   │   ├── auth.spec.ts
 │   │   ├── checkout.spec.ts
-│   │   ├── course.spec.ts
+│   │   ├── generation.spec.ts
 │   │   ├── accessibility.spec.ts
 │   │   └── visual.spec.ts
 │   └── performance/                         # Performance tests
@@ -1778,13 +1775,13 @@ export const mockUsers = {
   unauthenticated: null
 };
 
-// tests/fixtures/lessons.ts
-export const mockLessons = [
+// tests/fixtures/examples.ts
+export const mockExamples = [
   {
-    slug: 'lesson-01',
-    title: 'Введение в ясновидение',
-    course: 1,
-    duration: '15 мин'
+    slug: 'example-01',
+    title: 'Сопроводительное письмо для разработчика',
+    job: 'Software Engineer',
+    tone: 'professional'
   }
 ];
 ```
@@ -1797,8 +1794,8 @@ Always test error scenarios:
 test('should handle network error gracefully', async () => {
   // Mock network failure
   vi.spyOn(window, 'fetch').mockRejectedValueOnce(new Error('Network error'));
-  
-  render(CourseContent);
+
+  render(LetterGeneration);
   
   // Should show error message
   await waitFor(() => {
@@ -1841,7 +1838,7 @@ Keep this strategy document updated when:
 
 ## Summary
 
-This comprehensive testing strategy ensures the indigocosmo.club platform delivers:
+This comprehensive testing strategy ensures the cover.me platform delivers:
 - ✅ **High Quality**: 80%+ code coverage, robust testing at all levels
 - ✅ **Accessibility**: WCAG 2.1 AA compliance, tested with automated and manual methods
 - ✅ **Performance**: Lighthouse 90+ scores, sub-2s page loads
