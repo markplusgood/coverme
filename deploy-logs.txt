@@ -1,33 +1,99 @@
-3:32:21.430	
-13:32:21.431	Found wrangler.toml file. Reading build configuration...
-13:32:22.541	A wrangler.toml file was found but it does not appear to be valid. Did you mean to use wrangler.toml to configure Pages? If so, then make sure the file is valid and contains the `pages_build_output_dir` property. Skipping file and continuing.
-13:32:22.612	Detected the following tools from environment: npm@10.9.2, nodejs@22.16.0
-13:32:22.613	Installing project dependencies: npm install --progress=false
-13:32:34.052	npm warn deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
-13:32:34.341	npm warn deprecated rollup-plugin-inject@3.0.2: This package has been deprecated and is no longer maintained. Please use @rollup/plugin-inject.
-13:32:34.696	npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
-13:32:34.762	npm warn deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
-13:32:34.798	npm warn deprecated glob@7.2.3: Glob versions prior to v9 are no longer supported
-13:32:38.792	
-13:32:38.793	added 228 packages, and audited 229 packages in 16s
-13:32:38.793	
-13:32:38.793	34 packages are looking for funding
-13:32:38.793	  run `npm fund` for details
-13:32:38.836	
-13:32:38.837	9 vulnerabilities (2 low, 7 moderate)
-13:32:38.837	
-13:32:38.837	To address all issues (including breaking changes), run:
-13:32:38.837	  npm audit fix --force
-13:32:38.837	
-13:32:38.837	Run `npm audit` for details.
-13:32:38.863	Executing user command: bun run build
-13:32:39.085	$ svelte-kit sync && vite build
-13:32:39.703	file:///opt/buildhome/repo/svelte.config.js?ts=1765445559348:2
-13:32:39.703	import { vitePreprocess } from '@sveltejs/kit';
-13:32:39.703	         ^^^^^^^^^^^^^^
-13:32:39.704	SyntaxError: The requested module '@sveltejs/kit' does not provide an export named 'vitePreprocess'
-13:32:39.704	    at ModuleJob._instantiate (node:internal/modules/esm/module_job:182:21)
-13:32:39.704	    at async ModuleJob.run (node:internal/modules/esm/module_job:266:5)
-13:32:39.704	    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)
-13:32:39.704	    at async load_config (file:///opt/buildhome/repo/node_modules/@sveltejs/kit/src/core/config/index.js:81:17)
-13:32:39.704	    at async file:///opt/buildhome/repo/node_modules/@sveltejs/kit/src/cli.js:39:19
+2025-12-11T10:18:06.359Z	Initializing build environment...
+2025-12-11T10:18:07.297Z	Initializing build environment...
+2025-12-11T10:18:26.607Z	Success: Finished initializing build environment
+2025-12-11T10:18:27.035Z	Cloning repository...
+2025-12-11T10:18:29.570Z	Detected the following tools from environment: bun@1.2.15, nodejs@22.16.0
+2025-12-11T10:18:29.740Z	Installing project dependencies: bun install --frozen-lockfile
+2025-12-11T10:18:29.879Z	bun install v1.2.15 (df017990)
+2025-12-11T10:18:31.968Z	
+2025-12-11T10:18:31.973Z	+ @sveltejs/adapter-cloudflare@4.9.0
+2025-12-11T10:18:31.973Z	+ @sveltejs/kit@2.49.2
+2025-12-11T10:18:31.973Z	+ @sveltejs/vite-plugin-svelte@3.1.2
+2025-12-11T10:18:31.973Z	+ prettier@3.7.4
+2025-12-11T10:18:31.973Z	+ prettier-plugin-svelte@3.4.0
+2025-12-11T10:18:31.973Z	+ svelte@4.2.20
+2025-12-11T10:18:31.973Z	+ svelte-check@3.8.6
+2025-12-11T10:18:31.973Z	+ tslib@2.8.1
+2025-12-11T10:18:31.973Z	+ typescript@5.9.3
+2025-12-11T10:18:31.973Z	+ vite@5.4.21
+2025-12-11T10:18:31.973Z	+ @supabase/supabase-js@2.87.1
+2025-12-11T10:18:31.973Z	+ autoprefixer@10.4.22
+2025-12-11T10:18:31.973Z	+ dotenv@17.2.3
+2025-12-11T10:18:31.973Z	+ postcss@8.5.6
+2025-12-11T10:18:31.973Z	+ tailwindcss@3.4.19
+2025-12-11T10:18:31.973Z	
+2025-12-11T10:18:31.973Z	230 packages installed [2.12s]
+2025-12-11T10:18:32.153Z	Executing user build command: bun run build
+2025-12-11T10:18:32.226Z	$ svelte-kit sync && vite build
+2025-12-11T10:18:34.901Z	vite v5.4.21 building SSR bundle for production...
+2025-12-11T10:18:34.946Z	transforming...
+2025-12-11T10:18:35.756Z	node_modules/@sveltejs/kit/src/runtime/client/client.js (6:23): "untrack" is not exported by "node_modules/svelte/src/runtime/ssr.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+2025-12-11T10:18:35.756Z	node_modules/@sveltejs/kit/src/runtime/client/client.js (328:15): "fork" is not exported by "node_modules/svelte/src/runtime/ssr.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+2025-12-11T10:18:35.756Z	node_modules/@sveltejs/kit/src/runtime/client/client.js (333:26): "fork" is not exported by "node_modules/svelte/src/runtime/ssr.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+2025-12-11T10:18:35.758Z	node_modules/@sveltejs/kit/src/runtime/client/client.js (1170:30): "settled" is not exported by "node_modules/svelte/src/runtime/ssr.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+2025-12-11T10:18:35.949Z	✓ 112 modules transformed.
+2025-12-11T10:18:36.037Z	rendering chunks...
+2025-12-11T10:18:37.181Z	Supabase client initialized successfully
+2025-12-11T10:18:37.205Z	vite v5.4.21 building for production...
+2025-12-11T10:18:37.209Z	transforming...
+2025-12-11T10:18:37.695Z	node_modules/@sveltejs/kit/src/runtime/client/client.js (5:23): "untrack" is not exported by "node_modules/svelte/src/runtime/index.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+2025-12-11T10:18:37.695Z	node_modules/@sveltejs/kit/src/runtime/client/client.js (327:15): "fork" is not exported by "node_modules/svelte/src/runtime/index.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+2025-12-11T10:18:37.695Z	node_modules/@sveltejs/kit/src/runtime/client/client.js (332:26): "fork" is not exported by "node_modules/svelte/src/runtime/index.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+2025-12-11T10:18:37.696Z	node_modules/@sveltejs/kit/src/runtime/client/client.js (1169:30): "settled" is not exported by "node_modules/svelte/src/runtime/index.js", imported by "node_modules/@sveltejs/kit/src/runtime/client/client.js".
+2025-12-11T10:18:37.862Z	✓ 80 modules transformed.
+2025-12-11T10:18:37.907Z	rendering chunks...
+2025-12-11T10:18:37.947Z	computing gzip size...
+2025-12-11T10:18:37.960Z	.svelte-kit/output/client/_app/version.json                        0.03 kB │ gzip: 0.05 kB
+2025-12-11T10:18:37.960Z	.svelte-kit/output/client/.vite/manifest.json                      3.93 kB │ gzip: 0.58 kB
+2025-12-11T10:18:37.960Z	.svelte-kit/output/client/_app/immutable/assets/0.DpC2qwXn.css    13.58 kB │ gzip: 3.15 kB
+2025-12-11T10:18:37.961Z	.svelte-kit/output/client/_app/immutable/entry/start.DtGpK1xj.js   0.12 kB │ gzip: 0.11 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/nodes/1.BwPM9-ZJ.js       1.00 kB │ gzip: 0.58 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/nodes/0.BnGZ5iiq.js       1.15 kB │ gzip: 0.69 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/nodes/3.B_7s6_Wp.js       1.93 kB │ gzip: 0.88 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/chunks/CGIs31lE.js        2.06 kB │ gzip: 0.99 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/nodes/6.DIRuh_VX.js       3.07 kB │ gzip: 1.28 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/nodes/5.DfqWESig.js       3.17 kB │ gzip: 1.38 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/chunks/8Pdvlfge.js        6.10 kB │ gzip: 2.85 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/entry/app.C6WUHSMM.js     7.02 kB │ gzip: 2.76 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/chunks/DJlDrjtg.js        7.42 kB │ gzip: 3.02 kB
+2025-12-11T10:18:37.963Z	.svelte-kit/output/client/_app/immutable/nodes/2.DwnrvdUj.js       8.78 kB │ gzip: 2.89 kB
+2025-12-11T10:18:37.964Z	.svelte-kit/output/client/_app/immutable/nodes/4.Brurp-K2.js      11.70 kB │ gzip: 4.26 kB
+2025-12-11T10:18:37.964Z	.svelte-kit/output/client/_app/immutable/chunks/C9joZjoY.js       21.14 kB │ gzip: 8.31 kB
+2025-12-11T10:18:37.964Z	✓ built in 755ms
+2025-12-11T10:18:39.249Z	.svelte-kit/output/server/.vite/manifest.json                                    5.46 kB
+2025-12-11T10:18:39.250Z	.svelte-kit/output/server/_app/immutable/assets/_layout.DpC2qwXn.css            13.58 kB
+2025-12-11T10:18:39.250Z	.svelte-kit/output/server/chunks/ssr2.js                                         0.10 kB
+2025-12-11T10:18:39.250Z	.svelte-kit/output/server/internal.js                                            0.33 kB
+2025-12-11T10:18:39.251Z	.svelte-kit/output/server/chunks/state.svelte.js                                 0.38 kB
+2025-12-11T10:18:39.251Z	.svelte-kit/output/server/entries/pages/_layout.svelte.js                        0.53 kB
+2025-12-11T10:18:39.251Z	.svelte-kit/output/server/chunks/environment.js                                  0.62 kB
+2025-12-11T10:18:39.251Z	.svelte-kit/output/server/entries/endpoints/api/feedback/_server.ts.js           0.79 kB
+2025-12-11T10:18:39.251Z	.svelte-kit/output/server/entries/pages/auth/login/_page.server.ts.js            0.91 kB
+2025-12-11T10:18:39.251Z	.svelte-kit/output/server/chunks/supabase.js                                     1.02 kB
+2025-12-11T10:18:39.251Z	.svelte-kit/output/server/entries/fallbacks/error.svelte.js                      1.07 kB
+2025-12-11T10:18:39.252Z	.svelte-kit/output/server/chunks/utils.js                                        1.15 kB
+2025-12-11T10:18:39.252Z	.svelte-kit/output/server/entries/pages/auth/signup/_page.server.ts.js           1.21 kB
+2025-12-11T10:18:39.252Z	.svelte-kit/output/server/entries/pages/app/_page.svelte.js                      1.72 kB
+2025-12-11T10:18:39.252Z	.svelte-kit/output/server/chunks/monitoring.js                                   1.84 kB
+2025-12-11T10:18:39.252Z	.svelte-kit/output/server/chunks/hooks.server.js                                 2.09 kB
+2025-12-11T10:18:39.252Z	.svelte-kit/output/server/entries/pages/auth/signup/_page.svelte.js              2.23 kB
+2025-12-11T10:18:39.252Z	.svelte-kit/output/server/entries/pages/auth/login/_page.svelte.js               2.33 kB
+2025-12-11T10:18:39.252Z	.svelte-kit/output/server/chunks/ssr.js                                          3.89 kB
+2025-12-11T10:18:39.253Z	.svelte-kit/output/server/entries/pages/app/letters/new/_page.svelte.js          4.14 kB
+2025-12-11T10:18:39.253Z	.svelte-kit/output/server/chunks/exports.js                                      5.52 kB
+2025-12-11T10:18:39.253Z	.svelte-kit/output/server/chunks/internal.js                                     6.22 kB
+2025-12-11T10:18:39.253Z	.svelte-kit/output/server/entries/pages/_page.svelte.js                          6.93 kB
+2025-12-11T10:18:39.253Z	.svelte-kit/output/server/entries/endpoints/api/generate-letter/_server.ts.js    8.65 kB
+2025-12-11T10:18:39.253Z	.svelte-kit/output/server/chunks/shared.js                                      17.74 kB
+2025-12-11T10:18:39.253Z	.svelte-kit/output/server/remote-entry.js                                       18.83 kB
+2025-12-11T10:18:39.253Z	.svelte-kit/output/server/index.js                                             127.87 kB
+2025-12-11T10:18:39.254Z	✓ built in 4.33s
+2025-12-11T10:18:39.254Z	
+2025-12-11T10:18:39.254Z	Run npm run preview to preview your production build locally.
+2025-12-11T10:18:39.254Z	
+2025-12-11T10:18:39.254Z	> Using @sveltejs/adapter-cloudflare
+2025-12-11T10:18:39.410Z	  ✔ done
+2025-12-11T10:18:39.475Z	Success: Build command completed
+2025-12-11T10:18:39.636Z	Executing user deploy command: wrangler pages deploy
+2025-12-11T10:18:39.639Z	/bin/sh: 1: wrangler: not found
+2025-12-11T10:18:39.642Z	Failed: error occurred while running deploy command
