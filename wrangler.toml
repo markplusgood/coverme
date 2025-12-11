@@ -5,6 +5,7 @@ compatibility_date = "2025-12-11"
 command = "bun run build"
 cwd = "./"
 compatibility_date = "2025-12-11"
+watch_paths = ["src/**/*.svelte", "src/**/*.ts", "src/**/*.js"]
 
 [build.upload]
 format = "service-worker"
